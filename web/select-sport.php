@@ -14,6 +14,4 @@ and open the template in the editor.
         // put your code here
         ?>
     </body>
-    <!-- Hola Jack -->
-    <!-- Aloha Keylor -->
 </html>
