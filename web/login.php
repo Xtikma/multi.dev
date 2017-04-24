@@ -13,29 +13,29 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+            
         ?>
         
         <div class="container">
             <div class="row text-center text-uppercase text-primary"><h1>Inicio de sesión</h1></div>
             <div class="row col-md-4 col-md-offset-4">
                 <div class="form-horizontal con">
-                    <form>
+                    <form action="select-sport.php" method="post" class="form-group">
                         <div class="form-group">                        
                             <label for="username"> Nombre de Usuario</label>
                             <div class="input-group">
                                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                                <input class="form-control" type="text" placeholder="Usuario" id="username">
+                                <input class="form-control" type="text" placeholder="Usuario" id="username" name="user">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password"> Contraseña</label>
                             <div class="input-group">
                                 <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                <input class="form-control" type="password" placeholder="Contraseña" id="password">
+                                <input class="form-control" type="password" placeholder="Contraseña" id="password" name="pass">
                             </div>
                         </div>
-                        <a href="#" class="btn btn-primary btn-md center-block"> Confirmar</a>
+                        <input type="submit" href="#" class="btn btn-primary btn-md center-block" value="Confirmar"/>
                     </form>
                 </div>
             </div>
