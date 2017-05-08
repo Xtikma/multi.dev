@@ -16,18 +16,21 @@ and open the template in the editor.
             <div class="row text-center text-uppercase text-primary"><h1 for="Deporte">Seleccionar Deporte:</h1></div>
             <div class="row col-md-4 col-md-offset-4 text-center">
                 <div class="form-group">
-                    <select id="deporte">
+                    <select class="form-control" id="deporte" onchange="document.getElementById('selected_text').value=this.options[this.selectedIndex].text">
                         <option value="0">Futbol</option>
                         <option value="1">Baloncesto</option>
                         <option value="2">Voleibol</option>
                         <option value="3">Natación</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <select id="sexo">
+                <div  class="form-group">
+                    <select class="form-control" id="sexo">
                         <option value="m">Masculino</option>
                         <option value="f">Femenino</option>
                     </select>
+                </div>
+                <div>
+                    <input type="submit" href="#" class="btn btn-primary btn-md center-block" name="seleccionar" value="Seleccionar"/>
                 </div>
             </div>
 
