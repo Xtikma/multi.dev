@@ -23,7 +23,7 @@ and open the template in the editor.
                         <option value="3">Natación</option>
                     </select>
                 </div>
-                <div  class="form-group">
+                <div class="form-group">
                     <select class="form-control" id="sexo">
                         <option value="m">Masculino</option>
                         <option value="f">Femenino</option>
