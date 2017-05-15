@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Deportes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Grupal</th>
+                <th>Minimo</th>
+                <th>Maximo</th>
+                <th>Categorias</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for deporte in deportes %}
+                <tr>
+                    <td><a href="{{ path('deporte_show', { 'id': deporte.id }) }}">{{ deporte.id }}</a></td>
+                    <td>{{ deporte.nombre }}</td>
+                    <td>{% if deporte.grupal %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ deporte.minimo }}</td>
+                    <td>{{ deporte.maximo }}</td>
+                    <td>
+                        <ul>
+                            {% for cat in deporte.categorias %}
+                                <li>{{ cat }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('deporte_show', { 'id': deporte.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('deporte_edit', { 'id': deporte.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('deporte_new') }}">Create a new deporte</a>
+        </li>
+    </ul>
+{% endblock %}

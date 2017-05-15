@@ -1,0 +1,24 @@
+edicion_index:
+    path:     /
+    defaults: { _controller: "IcoderJuegosBundle:EdicionJuegos:index" }
+    methods:  GET
+
+edicion_show:
+    path:     /{id}/show
+    defaults: { _controller: "IcoderJuegosBundle:EdicionJuegos:show" }
+    methods:  GET
+
+edicion_new:
+    path:     /new
+    defaults: { _controller: "IcoderJuegosBundle:EdicionJuegos:new" }
+    methods:  [GET, POST]
+
+edicion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IcoderJuegosBundle:EdicionJuegos:edit" }
+    methods:  [GET, POST]
+
+edicion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IcoderJuegosBundle:EdicionJuegos:delete" }
+    methods:  DELETE
