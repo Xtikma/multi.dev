@@ -44,4 +44,7 @@ and open the template in the editor.
         <script src="js/jquery-3.2.0.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </body>
+    
+    <!-- PUTO!!!!! -->
+    
 </html>
