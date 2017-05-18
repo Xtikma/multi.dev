@@ -1,0 +1,3 @@
+icoder_homepage:
+    path:     /
+    defaults: { _controller: IcoderBundle:Default:index }

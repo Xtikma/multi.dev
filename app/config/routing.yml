@@ -1,7 +1,7 @@
-icoder_juegos:
-    resource: "@IcoderJuegosBundle/Resources/config/routing.yml"
+icoder:
+    resource: "@IcoderBundle/Resources/config/routing.yml"
     prefix:   /
-    
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
