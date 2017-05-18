@@ -97,6 +97,38 @@ class competitor
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /***
+     * Espacio para relaciones
+     */
+    
+    /**
+     * Relacion para canton
+     * 
+     * @ORM\ManyToOne(targetEntity="canton", inversedBy="competitors")
+     * @ORM\JoinColumn(name="canton_id", referencedColumnName="id")
+     */
+    private $canton;
+    
+    /**
+     * Recion para types
+     * 
+     * @ORM\ManyToOne(targetEntity="type", inversedBy="competitors")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     */
+    private $type;
+    
+    
+    /**
+     * Many competitor have Many teams.
+     * @ORM\ManyToMany(targetEntity="team", inversedBy="competitors")
+     * @ORM\JoinTable(name="competitor_team")
+     */
+    private $teams;
+    
+    /***
+     * Espacio para relaciones
+     */
 
 
     /**
@@ -372,5 +404,93 @@ class competitor
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set canton
+     *
+     * @param \IcoderBundle\Entity\canton $canton
+     *
+     * @return competitor
+     */
+    public function setCanton(\IcoderBundle\Entity\canton $canton = null)
+    {
+        $this->canton = $canton;
+
+        return $this;
+    }
+
+    /**
+     * Get canton
+     *
+     * @return \IcoderBundle\Entity\canton
+     */
+    public function getCanton()
+    {
+        return $this->canton;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \IcoderBundle\Entity\type $type
+     *
+     * @return competitor
+     */
+    public function setType(\IcoderBundle\Entity\type $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \IcoderBundle\Entity\type
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add team
+     *
+     * @param \IcoderBundle\Entity\team $team
+     *
+     * @return competitor
+     */
+    public function addTeam(\IcoderBundle\Entity\team $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \IcoderBundle\Entity\team $team
+     */
+    public function removeTeam(\IcoderBundle\Entity\team $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+}

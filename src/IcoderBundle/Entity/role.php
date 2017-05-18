@@ -34,6 +34,20 @@ class role
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /**
+     * Espacio para relaciones
+     */
+    
+     /**
+     * @ORM\ManyToOne(targetEntity="user", inversedBy="roles")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     */
+    private $user;
+    
+    /**
+     * Espacio para relaciones
+     */
 
 
     /**
@@ -93,5 +107,28 @@ class role
     {
         return $this->active;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \IcoderBundle\Entity\user $user
+     *
+     * @return role
+     */
+    public function setUser(\IcoderBundle\Entity\user $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \IcoderBundle\Entity\user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

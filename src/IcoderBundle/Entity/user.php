@@ -69,6 +69,24 @@ class user
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /**
+     * Espacio para Relaciones
+     */
+    
+    /**
+     * @ORM\OneToMany(targetEntity="inscription", mappedBy="user")
+     */
+    private $inscriptions;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="role", mappedBy="user")
+     */
+    private $roles;
+    
+    /**
+     * Espacio para Relaciones
+     */
 
 
     /**
@@ -248,5 +266,80 @@ class user
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add inscription
+     *
+     * @param \IcoderBundle\Entity\inscription $inscription
+     *
+     * @return user
+     */
+    public function addInscription(\IcoderBundle\Entity\inscription $inscription)
+    {
+        $this->inscriptions[] = $inscription;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscription
+     *
+     * @param \IcoderBundle\Entity\inscription $inscription
+     */
+    public function removeInscription(\IcoderBundle\Entity\inscription $inscription)
+    {
+        $this->inscriptions->removeElement($inscription);
+    }
+
+    /**
+     * Get inscriptions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
+    }
+
+    /**
+     * Add role
+     *
+     * @param \IcoderBundle\Entity\role $role
+     *
+     * @return user
+     */
+    public function addRole(\IcoderBundle\Entity\role $role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Remove role
+     *
+     * @param \IcoderBundle\Entity\role $role
+     */
+    public function removeRole(\IcoderBundle\Entity\role $role)
+    {
+        $this->roles->removeElement($role);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+}

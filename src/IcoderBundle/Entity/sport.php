@@ -34,6 +34,19 @@ class sport
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /**
+     * Espacio para Relaciones
+     */
+    
+     /**
+     * @ORM\OneToMany(targetEntity="category", mappedBy="sport")
+     */
+    private $categories;
+    
+    /**
+     * Espacio para Relaciones
+     */
 
 
     /**
@@ -93,5 +106,45 @@ class sport
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add category
+     *
+     * @param \IcoderBundle\Entity\category $category
+     *
+     * @return sport
+     */
+    public function addCategory(\IcoderBundle\Entity\category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \IcoderBundle\Entity\category $category
+     */
+    public function removeCategory(\IcoderBundle\Entity\category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+}

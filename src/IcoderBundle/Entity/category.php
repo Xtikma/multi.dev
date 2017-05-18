@@ -49,6 +49,24 @@ class category
      */
     private $active;
 
+    /**
+     * Espacio para Relaciones
+     */
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="sport", inversedBy="categories")
+     * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
+     */
+    private $sport;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="team", mappedBy="category")
+     */
+    private $teams;
+
+    /**
+     * Espacio para Relaciones
+     */
 
     /**
      * Get id
@@ -155,5 +173,69 @@ class category
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set sport
+     *
+     * @param \IcoderBundle\Entity\sport $sport
+     *
+     * @return category
+     */
+    public function setSport(\IcoderBundle\Entity\sport $sport = null)
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return \IcoderBundle\Entity\sport
+     */
+    public function getSport()
+    {
+        return $this->sport;
+    }
+
+    /**
+     * Add team
+     *
+     * @param \IcoderBundle\Entity\team $team
+     *
+     * @return category
+     */
+    public function addTeam(\IcoderBundle\Entity\team $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \IcoderBundle\Entity\team $team
+     */
+    public function removeTeam(\IcoderBundle\Entity\team $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+}

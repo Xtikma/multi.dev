@@ -34,6 +34,20 @@ class province
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /**
+     * Espacio para relaciones
+     */
+    
+    /**
+     * Realacion para cantones
+     * @ORM\OneToMany(targetEntity="canton", mappedBy="province")
+     */
+    private $cantones;
+    
+    /**
+     * Espacio para relaciones
+     */
 
 
     /**
@@ -93,5 +107,45 @@ class province
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cantones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add cantone
+     *
+     * @param \IcoderBundle\Entity\canton $cantone
+     *
+     * @return province
+     */
+    public function addCantone(\IcoderBundle\Entity\canton $cantone)
+    {
+        $this->cantones[] = $cantone;
+
+        return $this;
+    }
+
+    /**
+     * Remove cantone
+     *
+     * @param \IcoderBundle\Entity\canton $cantone
+     */
+    public function removeCantone(\IcoderBundle\Entity\canton $cantone)
+    {
+        $this->cantones->removeElement($cantone);
+    }
+
+    /**
+     * Get cantones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCantones()
+    {
+        return $this->cantones;
+    }
+}

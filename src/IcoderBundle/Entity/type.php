@@ -34,6 +34,24 @@ class type
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    
+    /**
+     * espacio para relaciones
+     */
+    
+    /**
+     * Relacion para competidores
+     * 
+     * @ORM\OneToMany(targetEntity="competitor", mappedBy="type")
+     */
+    private $competitors;
+    
+    /**
+     * espacio para relaciones
+     */
+    
+    
 
 
     /**
@@ -93,5 +111,45 @@ class type
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->competitors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add competitor
+     *
+     * @param \IcoderBundle\Entity\competitor $competitor
+     *
+     * @return type
+     */
+    public function addCompetitor(\IcoderBundle\Entity\competitor $competitor)
+    {
+        $this->competitors[] = $competitor;
+
+        return $this;
+    }
+
+    /**
+     * Remove competitor
+     *
+     * @param \IcoderBundle\Entity\competitor $competitor
+     */
+    public function removeCompetitor(\IcoderBundle\Entity\competitor $competitor)
+    {
+        $this->competitors->removeElement($competitor);
+    }
+
+    /**
+     * Get competitors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetitors()
+    {
+        return $this->competitors;
+    }
+}

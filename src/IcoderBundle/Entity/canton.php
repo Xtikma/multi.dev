@@ -34,6 +34,31 @@ class canton
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+    
+    /***
+     * Espacio para relaciones
+     */
+    
+    /**
+     * Relacion para competidores
+     * 
+     * @ORM\OneToMany(targetEntity="competitor", mappedBy="canton")
+     */
+    private $competitors;
+    
+    
+    /**
+     * Relacion para province
+     * 
+     * @ORM\ManyToOne(targetEntity="province", inversedBy="cantones")
+     * @ORM\JoinColumn(name="province_id", referencedColumnName="id")
+     */
+    private $province;
+    
+    
+    /***
+     * Espacio para relaciones
+     */
 
 
     /**
@@ -93,5 +118,69 @@ class canton
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->competitors = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add competitor
+     *
+     * @param \IcoderBundle\Entity\competitor $competitor
+     *
+     * @return canton
+     */
+    public function addCompetitor(\IcoderBundle\Entity\competitor $competitor)
+    {
+        $this->competitors[] = $competitor;
+
+        return $this;
+    }
+
+    /**
+     * Remove competitor
+     *
+     * @param \IcoderBundle\Entity\competitor $competitor
+     */
+    public function removeCompetitor(\IcoderBundle\Entity\competitor $competitor)
+    {
+        $this->competitors->removeElement($competitor);
+    }
+
+    /**
+     * Get competitors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetitors()
+    {
+        return $this->competitors;
+    }
+
+    /**
+     * Set province
+     *
+     * @param \IcoderBundle\Entity\province $province
+     *
+     * @return canton
+     */
+    public function setProvince(\IcoderBundle\Entity\province $province = null)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return \IcoderBundle\Entity\province
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+}

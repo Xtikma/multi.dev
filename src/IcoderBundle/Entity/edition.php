@@ -63,6 +63,17 @@ class edition
      */
     private $active;
 
+    /**
+     * Espacio para Relaciones
+     */
+    
+    /**
+     * @ORM\OneToMany(targetEntity="inscription", mappedBy="edition")
+     */
+    private $inscriptions;
+    /**
+     * Espacio para Relaciones
+     */
 
     /**
      * Get id
@@ -217,5 +228,45 @@ class edition
     {
         return $this->active;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add inscription
+     *
+     * @param \IcoderBundle\Entity\inscription $inscription
+     *
+     * @return edition
+     */
+    public function addInscription(\IcoderBundle\Entity\inscription $inscription)
+    {
+        $this->inscriptions[] = $inscription;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscription
+     *
+     * @param \IcoderBundle\Entity\inscription $inscription
+     */
+    public function removeInscription(\IcoderBundle\Entity\inscription $inscription)
+    {
+        $this->inscriptions->removeElement($inscription);
+    }
+
+    /**
+     * Get inscriptions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
+    }
+}
