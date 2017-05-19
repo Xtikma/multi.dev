@@ -3,6 +3,8 @@
 namespace IcoderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Serializable;
 
 /**
  * user
@@ -10,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="IcoderBundle\Repository\userRepository")
  */
-class user
-{
+class user implements UserInterface, Serializable {
+
     /**
      * @var int
      *
@@ -69,33 +71,31 @@ class user
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
-    
-    /**
-     * Espacio para Relaciones
-     */
-    
-    /**
-     * @ORM\OneToMany(targetEntity="inscription", mappedBy="user")
-     */
-    private $inscriptions;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="role", mappedBy="user")
-     */
-    private $roles;
-    
+
     /**
      * Espacio para Relaciones
      */
 
+    /**
+     * @ORM\OneToMany(targetEntity="inscription", mappedBy="user")
+     */
+    private $inscriptions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="role", mappedBy="user")
+     */
+    private $roles;
+
+    /**
+     * Espacio para Relaciones
+     */
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -106,8 +106,7 @@ class user
      *
      * @return user
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -118,8 +117,7 @@ class user
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -130,8 +128,7 @@ class user
      *
      * @return user
      */
-    public function setLastname($lastname)
-    {
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
 
         return $this;
@@ -142,8 +139,7 @@ class user
      *
      * @return string
      */
-    public function getLastname()
-    {
+    public function getLastname() {
         return $this->lastname;
     }
 
@@ -154,8 +150,7 @@ class user
      *
      * @return user
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
 
         return $this;
@@ -166,8 +161,7 @@ class user
      *
      * @return string
      */
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -178,8 +172,7 @@ class user
      *
      * @return user
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -190,8 +183,7 @@ class user
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -202,8 +194,7 @@ class user
      *
      * @return user
      */
-    public function setDni($dni)
-    {
+    public function setDni($dni) {
         $this->dni = $dni;
 
         return $this;
@@ -214,8 +205,7 @@ class user
      *
      * @return string
      */
-    public function getDni()
-    {
+    public function getDni() {
         return $this->dni;
     }
 
@@ -226,8 +216,7 @@ class user
      *
      * @return user
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -238,8 +227,7 @@ class user
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -250,8 +238,7 @@ class user
      *
      * @return user
      */
-    public function setActive($active)
-    {
+    public function setActive($active) {
         $this->active = $active;
 
         return $this;
@@ -262,15 +249,14 @@ class user
      *
      * @return bool
      */
-    public function getActive()
-    {
+    public function getActive() {
         return $this->active;
     }
+
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -282,8 +268,7 @@ class user
      *
      * @return user
      */
-    public function addInscription(\IcoderBundle\Entity\inscription $inscription)
-    {
+    public function addInscription(\IcoderBundle\Entity\inscription $inscription) {
         $this->inscriptions[] = $inscription;
 
         return $this;
@@ -294,8 +279,7 @@ class user
      *
      * @param \IcoderBundle\Entity\inscription $inscription
      */
-    public function removeInscription(\IcoderBundle\Entity\inscription $inscription)
-    {
+    public function removeInscription(\IcoderBundle\Entity\inscription $inscription) {
         $this->inscriptions->removeElement($inscription);
     }
 
@@ -304,8 +288,7 @@ class user
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInscriptions()
-    {
+    public function getInscriptions() {
         return $this->inscriptions;
     }
 
@@ -316,8 +299,7 @@ class user
      *
      * @return user
      */
-    public function addRole(\IcoderBundle\Entity\role $role)
-    {
+    public function addRole(\IcoderBundle\Entity\role $role) {
         $this->roles[] = $role;
 
         return $this;
@@ -328,8 +310,7 @@ class user
      *
      * @param \IcoderBundle\Entity\role $role
      */
-    public function removeRole(\IcoderBundle\Entity\role $role)
-    {
+    public function removeRole(\IcoderBundle\Entity\role $role) {
         $this->roles->removeElement($role);
     }
 
@@ -338,8 +319,35 @@ class user
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getRoles()
-    {
+    public function getRoles() {
         return $this->roles;
     }
+
+    public function getSalt() {
+        /* Investigar para que es esta variable, no es obligatoria */
+        return null;
+    }
+    
+        public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized) {
+        list (
+                $this->id,
+                $this->username,
+                $this->password,
+                ) = unserialize($serialized);
+    }
+
 }

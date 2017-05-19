@@ -1,0 +1,24 @@
+sport_index:
+    path:     /
+    defaults: { _controller: "IcoderBundle:sport:index" }
+    methods:  GET
+
+sport_show:
+    path:     /{id}/show
+    defaults: { _controller: "IcoderBundle:sport:show" }
+    methods:  GET
+
+sport_new:
+    path:     /new
+    defaults: { _controller: "IcoderBundle:sport:new" }
+    methods:  [GET, POST]
+
+sport_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IcoderBundle:sport:edit" }
+    methods:  [GET, POST]
+
+sport_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IcoderBundle:sport:delete" }
+    methods:  DELETE

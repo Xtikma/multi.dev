@@ -1,0 +1,24 @@
+competitor_index:
+    path:     /
+    defaults: { _controller: "IcoderBundle:competitor:index" }
+    methods:  GET
+
+competitor_show:
+    path:     /{id}/show
+    defaults: { _controller: "IcoderBundle:competitor:show" }
+    methods:  GET
+
+competitor_new:
+    path:     /new
+    defaults: { _controller: "IcoderBundle:competitor:new" }
+    methods:  [GET, POST]
+
+competitor_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IcoderBundle:competitor:edit" }
+    methods:  [GET, POST]
+
+competitor_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IcoderBundle:competitor:delete" }
+    methods:  DELETE
