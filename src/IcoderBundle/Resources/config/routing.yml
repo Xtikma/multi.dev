@@ -1,0 +1,47 @@
+icoder_editions:
+    resource: "@IcoderBundle/Resources/config/routing/edition.yml"
+    prefix:   /editions
+    
+icoder_user:
+        resource: "@IcoderBundle/Resources/config/routing/user.yml"
+        prefix:   /user
+    
+icoder_user_role:
+        resource: "@IcoderBundle/Resources/config/routing/role.yml"
+        prefix:   /user/role
+    
+icoder_team:
+        resource: "@IcoderBundle/Resources/config/routing/team.yml"
+        prefix:   /team
+
+icoder_team_inscription:
+        resource: "@IcoderBundle/Resources/config/routing/inscription.yml"
+        prefix:   /team/inscription
+    
+icoder_sport:
+        resource: "@IcoderBundle/Resources/config/routing/sport.yml"
+        prefix:   /sport
+        
+icoder_sport_category:
+        resource: "@IcoderBundle/Resources/config/routing/category.yml"
+        prefix:   /sport/category
+    
+icoder_competitor:
+        resource: "@IcoderBundle/Resources/config/routing/competitor.yml"
+        prefix:   /competitor
+        
+icoder_competitor_province:
+        resource: "@IcoderBundle/Resources/config/routing/province.yml"
+        prefix:   /competitor/province
+    
+icoder_competitor_province_canton:
+        resource: "@IcoderBundle/Resources/config/routing/canton.yml"
+        prefix:   /competitor/province/canton
+        
+icoder_competitor_type:
+        resource: "@IcoderBundle/Resources/config/routing/type.yml"
+        prefix:   /competitor/type
+
+icoder_homepage:
+    path:     /
+    defaults: { _controller: IcoderBundle:Default:index }

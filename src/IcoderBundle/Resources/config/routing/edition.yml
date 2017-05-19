@@ -1,0 +1,24 @@
+editions_index:
+    path:     /
+    defaults: { _controller: "IcoderBundle:edition:index" }
+    methods:  GET
+
+editions_show:
+    path:     /{id}/show
+    defaults: { _controller: "IcoderBundle:edition:show" }
+    methods:  GET
+
+editions_new:
+    path:     /new
+    defaults: { _controller: "IcoderBundle:edition:new" }
+    methods:  [GET, POST]
+
+editions_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IcoderBundle:edition:edit" }
+    methods:  [GET, POST]
+
+editions_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IcoderBundle:edition:delete" }
+    methods:  DELETE
