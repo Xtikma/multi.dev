@@ -25,7 +25,11 @@ icoder_sport:
 icoder_sport_category:
         resource: "@IcoderBundle/Resources/config/routing/category.yml"
         prefix:   /sport/category
-    
+
+icoder_sport_test:
+        resource: "@IcoderBundle/Resources/config/routing/sporttest.yml"
+        prefix:   /sport/test
+
 icoder_competitor:
         resource: "@IcoderBundle/Resources/config/routing/competitor.yml"
         prefix:   /competitor

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sporttests list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Isfemale</th>
+                <th>Year1</th>
+                <th>Year2</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sportTest in sportTests %}
+            <tr>
+                <td><a href="{{ path('test_show', { 'id': sportTest.id }) }}">{{ sportTest.id }}</a></td>
+                <td>{{ sportTest.name }}</td>
+                <td>{% if sportTest.isFemale %}Yes{% else %}No{% endif %}</td>
+                <td>{% if sportTest.year1 %}{{ sportTest.year1|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if sportTest.year2 %}{{ sportTest.year2|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if sportTest.date %}{{ sportTest.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('test_show', { 'id': sportTest.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('test_edit', { 'id': sportTest.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('test_new') }}">Create a new sportTest</a>
+        </li>
+    </ul>
+{% endblock %}
