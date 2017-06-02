@@ -58,11 +58,6 @@ class category
      * @ORM\JoinColumn(name="sport_id", referencedColumnName="id")
      */
     private $sport;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="team", mappedBy="category")
-     */
-    private $teams;
 
     /**
      * Espacio para Relaciones
@@ -237,5 +232,45 @@ class category
     public function getTeams()
     {
         return $this->teams;
+    }
+    
+     /**
+     * One category has Many SportTest.
+     * @ORM\OneToMany(targetEntity="SportTest", mappedBy="category")
+     */
+    private $tests;
+
+    /**
+     * Add test
+     *
+     * @param \IcoderBundle\Entity\SportTest $test
+     *
+     * @return category
+     */
+    public function addTest(\IcoderBundle\Entity\SportTest $test)
+    {
+        $this->tests[] = $test;
+
+        return $this;
+    }
+
+    /**
+     * Remove test
+     *
+     * @param \IcoderBundle\Entity\SportTest $test
+     */
+    public function removeTest(\IcoderBundle\Entity\SportTest $test)
+    {
+        $this->tests->removeElement($test);
+    }
+
+    /**
+     * Get tests
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTests()
+    {
+        return $this->tests;
     }
 }
