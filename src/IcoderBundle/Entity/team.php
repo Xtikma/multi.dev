@@ -39,12 +39,6 @@ class team
     private $competitors;
     
     /**
-     * @ORM\ManyToOne(targetEntity="category", inversedBy="teams")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    private $category;
-    
-    /**
      * @ORM\OneToMany(targetEntity="inscription", mappedBy="team")
      */
     private $inscriptions;
@@ -186,5 +180,36 @@ class team
     public function getInscriptions()
     {
         return $this->inscriptions;
+    }
+    
+    /**
+     * Many teams have One SportTest.
+     * @ORM\ManyToOne(targetEntity="SportTest", inversedBy="teams")
+     * @ORM\JoinColumn(name="idtest", referencedColumnName="id")
+     */
+    private $sportTest;
+
+    /**
+     * Set sportTest
+     *
+     * @param \IcoderBundle\Entity\SportTest $sportTest
+     *
+     * @return team
+     */
+    public function setSportTest(\IcoderBundle\Entity\SportTest $sportTest = null)
+    {
+        $this->sportTest = $sportTest;
+
+        return $this;
+    }
+
+    /**
+     * Get sportTest
+     *
+     * @return \IcoderBundle\Entity\SportTest
+     */
+    public function getSportTest()
+    {
+        return $this->sportTest;
     }
 }
