@@ -22,7 +22,7 @@ class SportTestController extends Controller
 
         $sportTests = $em->getRepository('IcoderBundle:SportTest')->findAll();
 
-        return $this->render('sporttest/index.html.twig', array(
+        return $this->render('IcoderBundle:SportTest:index.html.twig', array(
             'sportTests' => $sportTests,
         ));
     }
@@ -45,7 +45,7 @@ class SportTestController extends Controller
             return $this->redirectToRoute('test_show', array('id' => $sportTest->getId()));
         }
 
-        return $this->render('sporttest/new.html.twig', array(
+        return $this->render('IcoderBundle:SportTest:new.html.twig', array(
             'sportTest' => $sportTest,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class SportTestController extends Controller
     {
         $deleteForm = $this->createDeleteForm($sportTest);
 
-        return $this->render('sporttest/show.html.twig', array(
+        return $this->render('IcoderBundle:SportTest:show.html.twig', array(
             'sportTest' => $sportTest,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class SportTestController extends Controller
             return $this->redirectToRoute('test_edit', array('id' => $sportTest->getId()));
         }
 
-        return $this->render('sporttest/edit.html.twig', array(
+        return $this->render('IcoderBundle:SportTest:edit.html.twig', array(
             'sportTest' => $sportTest,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% block header %}
+        <a href="/" ><img src="{% block iconURL %} {% endblock %}"/></a>
+        {% block title %}Juegos Nacionales{% endblock %}
+    {% endblock %}
+    {% block nav %}
+        <nav>
+            <ul>
+                <li> <a href="/competitor" >competidores</a> </li>
+                <li> <a href="/user" >Usuarios</a> </li>
+                <li> <a href="/sport" >Deportes</a> </li>
+                <li> <a href="/competitor/province" >Provincias</a> </li>
+                <li> <a href="/editions" >Ediciones</a> </li>
+                <li> <a href="/team/inscription" >Inscipciones</a> </li>
+            </ul>
+        </nav>
+    {% endblock %}
+    {% block content %}{% endblock %}
+{% endblock %}
