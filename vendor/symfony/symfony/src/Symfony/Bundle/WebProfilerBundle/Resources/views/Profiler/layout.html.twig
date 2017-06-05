@@ -3,6 +3,11 @@
 {% block body %}
     {{ include('@WebProfiler/Profiler/header.html.twig', with_context = false) }}
 
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css')}}">
+        <link rel="stylesheet"  type="text/css" href="{{ asset('public/css/styles.css')}}">
+    {% endblock %}
+    
     <div id="summary">
         {% block summary %}
             {% if profile is defined %}
@@ -130,7 +135,10 @@
             </div>
         </div>
     </div>
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
+        
         (function () {
             Sfjs.addEventListener(document.getElementById('sidebarShortcutsMenu'), 'click', function (event) {
                 event.preventDefault();
