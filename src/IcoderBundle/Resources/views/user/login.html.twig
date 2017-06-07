@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block css %}
+    <link href="{{ asset('css/forms/form.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/general.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block pageTitle %}Ingresando{% endblock %}
+
+{% block body %}
+    <div class="valign-wrapper height-vh">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card teal darken-1 z-depth-4">
+                        <div class="card-content white-text">
+                            <span class="card-title">Ingresar</span>
+                            <form name="user" id="user" action="{{ url('user_login') }}" method="POST">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="username" name="username" type="text" class="validate">
+                                        <label for="username">Nombre de usuario</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="password" name="username" type="password" class="validate">
+                                        <label for="username">Contraseña</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-action">
+                            <a class="waves-effect light-blue lighten-2 btn" onclick="document.user.submit();">
+                                <i class="large material-icons right">play_arrow</i>
+                                Ingresar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
