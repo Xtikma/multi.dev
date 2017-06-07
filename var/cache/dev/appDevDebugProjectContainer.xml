@@ -461,7 +461,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>KBPxj8MxN-</argument>
                 <argument>0</argument>
-                <argument>5TTFAW7KbJUsseKJVbc+fc</argument>
+                <argument>MHCBxSFAH4PhIyEtnnkT5W</argument>
                 <argument>C:\xampp\Symfony\Proyectos\InscripcionJuegosNac\multi.dev\var\cache\dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -644,7 +644,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>raklqneYoL</argument>
       <argument>0</argument>
-      <argument>5TTFAW7KbJUsseKJVbc+fc</argument>
+      <argument>MHCBxSFAH4PhIyEtnnkT5W</argument>
       <argument>C:\xampp\Symfony\Proyectos\InscripcionJuegosNac\multi.dev\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -654,7 +654,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>GpTz13ajBi</argument>
       <argument>0</argument>
-      <argument>5TTFAW7KbJUsseKJVbc+fc</argument>
+      <argument>MHCBxSFAH4PhIyEtnnkT5W</argument>
       <argument>C:\xampp\Symfony\Proyectos\InscripcionJuegosNac\multi.dev\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1647,7 +1647,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5935eae3761a51.80366835</argument>
+            <argument>593842d53e9ee3.89711573</argument>
           </service>
         </argument>
       </argument>
@@ -1785,6 +1785,14 @@
               <argument type="service">
                 <service class="Symfony\Component\Security\Core\User\InMemoryUserProvider" public="false"/>
               </argument>
+              <argument type="service">
+                <service class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider" public="false">
+                  <argument type="service" id="doctrine"/>
+                  <argument>IcoderBundle:user</argument>
+                  <argument>username</argument>
+                  <argument>null</argument>
+                </service>
+              </argument>
             </argument>
             <argument>main</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -1795,7 +1803,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5935eae3761a51.80366835</argument>
+            <argument>593842d53e9ee3.89711573</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2678,7 +2686,14 @@
       <autowiring-type>Doctrine\Common\Annotations\Reader</autowiring-type>
     </service>
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="IcoderBundle\Entity\user" type="collection">
+          <argument key="class">Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder</argument>
+          <argument key="arguments" type="collection">
+            <argument>13</argument>
+          </argument>
+        </argument>
+      </argument>
     </service>
     <service id="security.password_encoder" class="Symfony\Component\Security\Core\Encoder\UserPasswordEncoder">
       <argument type="service" id="security.encoder_factory"/>

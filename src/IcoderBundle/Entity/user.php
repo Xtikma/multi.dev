@@ -50,6 +50,8 @@ class user implements UserInterface, Serializable {
      * @ORM\Column(name="password", type="string", length=64)
      */
     private $password;
+    
+    private $plainPassword;
 
     /**
      * @var string
@@ -186,7 +188,16 @@ class user implements UserInterface, Serializable {
     public function getPassword() {
         return $this->password;
     }
+    
+    function getPlainPassword() {
+        return $this->plainPassword;
+    }
 
+    function setPlainPassword($plainPassword) {
+        $this->plainPassword = $plainPassword;
+    }
+
+    
     /**
      * Set dni
      *
@@ -337,7 +348,6 @@ class user implements UserInterface, Serializable {
         return serialize(array(
             $this->id,
             $this->username,
-            $this->password,
         ));
     }
 
@@ -346,7 +356,6 @@ class user implements UserInterface, Serializable {
         list (
                 $this->id,
                 $this->username,
-                $this->password,
                 ) = unserialize($serialized);
     }
 
