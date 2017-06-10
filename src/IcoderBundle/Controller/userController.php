@@ -36,13 +36,13 @@ class userController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             // Encriptamos el password
             $password = $this->get('security.password_encoder')
-                ->encodePassword($user, $user->getPlainPassword());
+                    ->encodePassword($user, $user->getPlainPassword());
             //le damos la nueva clave
             $user->setPassword($password);
-            
+
             //almacena
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -123,8 +123,20 @@ class userController extends Controller {
                         ->getForm()
         ;
     }
-    
-    public function loginAction() {
-        return $this->render('IcoderBundle:user:login.html.twig');
+
+    public function loginAction(Request $request) {
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('IcoderBundle:user:login.html.twig', array(
+                    'last_username' => $lastUsername,
+                    'error' => $error,
+        ));
     }
+
 }

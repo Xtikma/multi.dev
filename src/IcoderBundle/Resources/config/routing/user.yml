@@ -26,9 +26,4 @@ user_delete:
 user_login:
     path:     /login
     defaults: { _controller: "IcoderBundle:user:login" }
-    methods:  GET
-    
-user_login:
-    path:     /login
-    defaults: { _controller: "IcoderBundle:user:login" }
-    methods:  POST
+    methods:  [GET, POST]

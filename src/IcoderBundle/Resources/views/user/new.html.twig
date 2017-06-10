@@ -1,14 +1,18 @@
 {% extends 'template.html.twig' %}
 
+{% block css %}
+    <link href="{{ asset('css/forms/form.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
 {% block content %}
-    <h1>User creation</h1>
+    <div class="card teal darken-1 white-text">
+        <span class="card-title" >User creation</span>
 
     {# {{ dump(form) }} #}
-    
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-    {{ form_end(form) }}
-
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
     <ul>
         <li>
             <a href="{{ path('user_index') }}">listar usuarios</a>

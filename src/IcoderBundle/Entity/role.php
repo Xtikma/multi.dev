@@ -131,4 +131,8 @@ class role
     {
         return $this->user;
     }
+    
+    public function __toString() {
+        $this->getRole();
+    }
 }

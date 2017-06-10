@@ -359,4 +359,8 @@ class user implements UserInterface, Serializable {
                 ) = unserialize($serialized);
     }
 
+    
+    public function __toString() {
+        return $this->getDni() . " " . $this->getName();
+    }
 }

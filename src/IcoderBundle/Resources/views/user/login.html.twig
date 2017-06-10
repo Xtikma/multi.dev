@@ -2,7 +2,6 @@
 
 {% block css %}
     <link href="{{ asset('css/forms/form.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('css/general.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block pageTitle %}Ingresando{% endblock %}
@@ -10,6 +9,9 @@
 {% block body %}
     <div class="valign-wrapper height-vh">
         <div class="container">
+            {% if error %}
+                <div class="row" >{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
             <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <div class="card teal darken-1 z-depth-4">
