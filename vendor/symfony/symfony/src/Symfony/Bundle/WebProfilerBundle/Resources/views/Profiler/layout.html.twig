@@ -2,7 +2,7 @@
 
 {% block body %}
     {{ include('@WebProfiler/Profiler/header.html.twig', with_context = false) }}
-
+    
     <div id="summary">
         {% block summary %}
             {% if profile is defined %}
@@ -131,6 +131,7 @@
         </div>
     </div>
     <script>
+        
         (function () {
             Sfjs.addEventListener(document.getElementById('sidebarShortcutsMenu'), 'click', function (event) {
                 event.preventDefault();

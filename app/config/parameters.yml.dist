@@ -17,3 +17,17 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+
+     
+        admin:
+            pattern: ^/
+            anonymous: ~
+            provider: user_db
+            form_login:
+                login_path: /user/login
+                check_path: /user/login
+
+access_control:
+      - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/, roles: ROLE_ADMIN }

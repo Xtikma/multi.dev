@@ -1,17 +1,42 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
+    encoders:
+        IcoderBundle\Entity\user:
+                 algorithm: bcrypt
+                 cost: 12
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
-
+            memory: 
+                users:
+                    user:
+                        password: 123
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: admin
+                        roles: 'ROLE_ADMIN'
+            
+        user_db:
+            entity:
+                class: IcoderBundle:user
+                property: username
+                
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            
+            
+        admin:
+            pattern: ^/
+            anonymous: ~
+            provider: user_db
+            form_login:
+                login_path: /user/login
+                check_path: /user/login
 
         main:
             anonymous: ~
@@ -22,3 +47,8 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #form_login: ~
+                        
+    access_control:
+        - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }
+
