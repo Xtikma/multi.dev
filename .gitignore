@@ -14,3 +14,6 @@
 !var/SymfonyRequirements.php
 /web/*
 /vendor/
+!/web/css/
+!/web/fonts/
+!/web/js/

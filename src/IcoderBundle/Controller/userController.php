@@ -78,8 +78,13 @@ class userController extends Controller {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('IcoderBundle\Form\userType', $user);
         $editForm->handleRequest($request);
-
+        
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            
+            $password = $this->get('security.password_encoder')
+                    ->encodePassword($user, $user->getPlainPassword());
+            //le damos la nueva clave
+            $user->setPassword($password);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));

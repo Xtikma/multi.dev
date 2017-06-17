@@ -29,7 +29,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
             
-            
         admin:
             pattern: ^/
             anonymous: ~
@@ -37,6 +36,7 @@ security:
             form_login:
                 login_path: /user/login
                 check_path: /user/login
+        
 
         main:
             anonymous: ~
@@ -51,4 +51,3 @@ security:
     access_control:
         - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
-
