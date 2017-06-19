@@ -20,22 +20,16 @@ parameters:
 
 
      
-        admin:
-            pattern: ^/
+        main:
             anonymous: ~
-            provider: user_db
+            provider: in_memory
             form_login:
                 login_path: /user/login
                 check_path: /user/login
+            logout:
+                path:   /user/logout
+                target: /
 
-
-        admin:
-                    pattern: ^/
-                    anonymous: ~
-                    provider: user_db
-                    form_login:
-                        login_path: /user/login
-                        check_path: /user/login
 
 access_control:
       - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

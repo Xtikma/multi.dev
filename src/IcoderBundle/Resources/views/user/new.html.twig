@@ -4,18 +4,23 @@
     <link href="{{ asset('css/forms/form.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
-{% block content %}
-    <div class="card teal darken-1 white-text">
-        <span class="card-title" >User creation</span>
-
-    {# {{ dump(form) }} #}
-        {{ form_start(form) }}
+{% block content_body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <h1 class="panel-title col-xs-3">Crear Usuario</h1>
+                <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('user_index') }}">Regresar</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
             {{ form_widget(form) }}
-        {{ form_end(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <a class="btn btn-primary col-xs-3" href="{{ path('user_index') }}">Regresar</a>
+            </div>
+        </div>
     </div>
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">listar usuarios</a>
-        </li>
-    </ul>
 {% endblock %}

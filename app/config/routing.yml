@@ -2,6 +2,9 @@ icoder:
     resource: "@IcoderBundle/Resources/config/routing.yml"
     prefix:   /
 
+user_logout:
+    path:     /user/logout
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

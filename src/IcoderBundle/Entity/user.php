@@ -83,8 +83,10 @@ class user implements UserInterface, Serializable {
      */
     private $inscriptions;
 
-    /**
-     * @ORM\OneToMany(targetEntity="role", mappedBy="user")
+   /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="role", inversedBy="users")
+     * @ORM\JoinTable(name="users_role")
      */
     private $roles;
 
@@ -269,7 +271,6 @@ class user implements UserInterface, Serializable {
      */
     public function __construct() {
         $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -303,36 +304,7 @@ class user implements UserInterface, Serializable {
         return $this->inscriptions;
     }
 
-    /**
-     * Add role
-     *
-     * @param \IcoderBundle\Entity\role $role
-     *
-     * @return user
-     */
-    public function addRole(\IcoderBundle\Entity\role $role) {
-        $this->roles[] = $role;
 
-        return $this;
-    }
-
-    /**
-     * Remove role
-     *
-     * @param \IcoderBundle\Entity\role $role
-     */
-    public function removeRole(\IcoderBundle\Entity\role $role) {
-        $this->roles->removeElement($role);
-    }
-
-    /**
-     * Get roles
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRoles() {
-        return $this->roles;
-    }
 
     public function getSalt() {
         /* Investigar para que es esta variable, no es obligatoria */
@@ -362,5 +334,34 @@ class user implements UserInterface, Serializable {
     
     public function __toString() {
         return $this->getDni() . " " . $this->getName();
+    }
+
+    public function getRoles() {
+        return $this->roles;
+    }
+
+
+    /**
+     * Add role
+     *
+     * @param \IcoderBundle\Entity\role $role
+     *
+     * @return user
+     */
+    public function addRole(\IcoderBundle\Entity\role $role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Remove role
+     *
+     * @param \IcoderBundle\Entity\role $role
+     */
+    public function removeRole(\IcoderBundle\Entity\role $role)
+    {
+        $this->roles->removeElement($role);
     }
 }

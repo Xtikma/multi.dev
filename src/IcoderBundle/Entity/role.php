@@ -39,11 +39,11 @@ class role
      * Espacio para relaciones
      */
     
-     /**
-     * @ORM\ManyToOne(targetEntity="user", inversedBy="roles")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+    /**
+     * Many Groups have Many Users.
+     * @ORM\ManyToMany(targetEntity="user", mappedBy="roles")
      */
-    private $user;
+    private $users;
     
     /**
      * Espacio para relaciones
@@ -134,5 +134,46 @@ class role
     
     public function __toString() {
         $this->getRole();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
+     *
+     * @param \IcoderBundle\Entity\user $user
+     *
+     * @return role
+     */
+    public function addUser(\IcoderBundle\Entity\user $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \IcoderBundle\Entity\user $user
+     */
+    public function removeUser(\IcoderBundle\Entity\user $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

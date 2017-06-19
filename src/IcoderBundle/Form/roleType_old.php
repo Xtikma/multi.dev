@@ -13,7 +13,7 @@ class roleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('role')->add('active')->add('users');
+        $builder->add('role')->add('active')->add('user');
     }
     
     /**
