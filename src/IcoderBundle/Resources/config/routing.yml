@@ -3,8 +3,8 @@ icoder_editions:
     prefix:   /editions
     
 icoder_user:
-        resource: "@IcoderBundle/Resources/config/routing/user.yml"
-        prefix:   /user
+    resource: "@IcoderBundle/Resources/config/routing/user.yml"
+    prefix:   /user
     
 icoder_user_role:
         resource: "@IcoderBundle/Resources/config/routing/role.yml"

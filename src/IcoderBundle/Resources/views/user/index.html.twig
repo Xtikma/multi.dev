@@ -1,51 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends "template.html.twig" %}
 
-{% block body %}
-    <h1>Users list</h1>
+{% block pageTitle %}Usuarios{% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Lastname</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Dni</th>
-                <th>Email</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.dni }}</td>
-                <td>{{ user.email }}</td>
-                <td>{% if user.active %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content_body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <h1 class="panel-title col-xs-3">Lista de Usuarios</h1>
+                <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('user_new') }}">Crear Usuario</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="hidden">Id</th>
+                        <th class="hidden">Name</th>
+                        <th class="hidden">Lastname</th>
+                        <th>Username</th>
+                        <th class="hidden">Password</th>
+                        <th>Dni</th>
+                        <th>Email</th>
+                        <th>Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td class="hidden"></td>
+                            <td class="hidden">{{ user.name }}</td>
+                            <td class="hidden">{{ user.lastname }}</td>
+                            <td> <a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
+                            <td class="hidden">{{ user.password }}</td>
+                            <td>{{ user.dni }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{% if user.active %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('user_new') }}">Create a new user</a>
-        </li>
-    </ul>
+{% block content_nav %}
+    {% include 'IcoderBundle:Default:nav_default.html.twig' %}
 {% endblock %}

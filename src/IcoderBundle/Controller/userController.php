@@ -10,19 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
  * User controller.
  *
  */
-class userController extends Controller {
-
+class userController extends Controller
+{
     /**
      * Lists all user entities.
      *
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('IcoderBundle:user')->findAll();
 
         return $this->render('IcoderBundle:user:index.html.twig', array(
-                    'users' => $users,
+            'users' => $users,
         ));
     }
 
@@ -30,30 +31,23 @@ class userController extends Controller {
      * Creates a new user entity.
      *
      */
-    public function newAction(Request $request) {
+    public function newAction(Request $request)
+    {
         $user = new User();
         $form = $this->createForm('IcoderBundle\Form\userType', $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // Encriptamos el password
-            $password = $this->get('security.password_encoder')
-                    ->encodePassword($user, $user->getPlainPassword());
-            //le damos la nueva clave
-            $user->setPassword($password);
-
-            //almacena
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user_index', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
 
         return $this->render('IcoderBundle:user:new.html.twig', array(
-                    'user' => $user,
-                    'form' => $form->createView(),
+            'user' => $user,
+            'form' => $form->createView(),
         ));
     }
 
@@ -61,12 +55,13 @@ class userController extends Controller {
      * Finds and displays a user entity.
      *
      */
-    public function showAction(user $user) {
+    public function showAction(user $user)
+    {
         $deleteForm = $this->createDeleteForm($user);
 
         return $this->render('IcoderBundle:user:show.html.twig', array(
-                    'user' => $user,
-                    'delete_form' => $deleteForm->createView(),
+            'user' => $user,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -74,26 +69,22 @@ class userController extends Controller {
      * Displays a form to edit an existing user entity.
      *
      */
-    public function editAction(Request $request, user $user) {
+    public function editAction(Request $request, user $user)
+    {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('IcoderBundle\Form\userType', $user);
         $editForm->handleRequest($request);
-        
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            
-            $password = $this->get('security.password_encoder')
-                    ->encodePassword($user, $user->getPlainPassword());
-            //le damos la nueva clave
-            $user->setPassword($password);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
         }
 
         return $this->render('IcoderBundle:user:edit.html.twig', array(
-                    'user' => $user,
-                    'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+            'user' => $user,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -101,7 +92,8 @@ class userController extends Controller {
      * Deletes a user entity.
      *
      */
-    public function deleteAction(Request $request, user $user) {
+    public function deleteAction(Request $request, user $user)
+    {
         $form = $this->createDeleteForm($user);
         $form->handleRequest($request);
 
@@ -121,14 +113,15 @@ class userController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(user $user) {
+    private function createDeleteForm(user $user)
+    {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
-                        ->setMethod('DELETE')
-                        ->getForm()
+            ->setAction($this->generateUrl('user_delete', array('id' => $user->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
         ;
     }
-
+    
     public function loginAction(Request $request) {
         $authenticationUtils = $this->get('security.authentication_utils');
 
@@ -136,7 +129,7 @@ class userController extends Controller {
         $error = $authenticationUtils->getLastAuthenticationError();
 
         // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+          $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('IcoderBundle:user:login.html.twig', array(
                     'last_username' => $lastUsername,

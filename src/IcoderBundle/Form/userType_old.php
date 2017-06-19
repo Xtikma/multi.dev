@@ -12,14 +12,13 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class userType extends AbstractType
-{
+class userType extends AbstractType {
+
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-         $builder->add('name', TextType::class)
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('name', TextType::class)
                 ->add('lastname', TextType::class)
                 ->add('dni', TextType::class)
                 ->add('email', EmailType::class)
@@ -32,12 +31,11 @@ class userType extends AbstractType
                 ->add('active', CheckboxType::class)
                 ->add('Guardar', SubmitType::class);
     }
-    
+
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'IcoderBundle\Entity\user'
         ));
@@ -46,10 +44,8 @@ class userType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
-    {
+    public function getBlockPrefix() {
         return 'icoderbundle_user';
     }
-
 
 }

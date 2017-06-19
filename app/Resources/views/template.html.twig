@@ -1,21 +1,57 @@
 {% extends "base.html.twig" %}
 {% block body %}
     {% block header %}
-        <a href="/" ><img src="{% block iconURL %} {% endblock %}"/></a>
-        {% block title %}Juegos Nacionales{% endblock %}
+        <div class="page-header">
+            <h1>ICODER<small> {% block title %}Juegos Nacionales{% endblock %}</small></h1>
+        </div>
     {% endblock %}
     {% block nav %}
-        <nav>
-            <ul>
-                <li> <a href="/competitor" >competidores</a> </li>
-                <li> <a href="/user" >Usuarios</a> </li>
-                <li> <a href="/sport" >Deportes</a> </li>
-                <li> <a href="/competitor/province" >Provincias</a> </li>
-                <li> <a href="/editions" >Ediciones</a> </li>
-                <li> <a href="/team/inscription" >Inscipciones</a> </li>
-            </ul>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navar_collapse1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">ICODER</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navar_collapse1">
+                    {# Iclulle una vista que contiene el menu base #}
+                    {% include '::nav.html.twig' %}
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
         </nav>
     {% endblock %}
-    {% block content %}
-    {% endblock %}
+    <section class="row"> 
+        {% block content %}
+            <article class="col-sm-9">
+                {% block content_body %}
+                    {#  agregue aquí el contenido del la vista #}
+                {% endblock %}
+            </article>
+            <sidebar class="col-sm-3">
+                {% block content_nav %}
+                    {# agregue aquí obciones para la vistac #}
+                {% endblock %}
+            </sidebar>
+        {% endblock %}
+    </section>
+    <footer class="row panel">
+        <div class="text-center">
+            {% block footer_body %}
+            {% endblock %}
+        </div>
+        <div class="panel-footer text-center">
+            <span>
+                <span class="copyleft glyphicon glyphicon-copyright-mark">
+                </span>
+                Copy left
+            </span>  
+        </div>
+    </footer>
 {% endblock %}
