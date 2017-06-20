@@ -1,16 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'template.html.twig' %}
 
-{% block body %}
-    <h1>Canton creation</h1>
+{% block css %}
+    <link href="{{ asset('css/forms/form.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+{% block content_body %}
+    <div clas="panel panel-defautl">
+        <div class="panel-heading">
+            <div class="row">
+                <h1 class="panel-title col-xs-3">Crear cantón</h1>
+                <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{path('canton_index')}}">Regresar</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <a class="btn btn-primary col-xs-3" href="{{ path('canton_index') }}">Regresar</a>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('canton_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
