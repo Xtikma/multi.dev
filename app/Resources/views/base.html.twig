@@ -7,25 +7,20 @@
             <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
             <link href="{{ asset('css/general.css') }}" rel="stylesheet" type="text/css"/>
         {% endblock %}
-        {% block css %}{% endblock %}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body class="container-fluid height-vh">
-        {# 
-           Base 1:    grey darken-4
-           Base 2:    indigo lighten-4
-           Color:     teal darken-1
-           Contraste: light-blue lighten-2
-        #}
-        {% block body %}{% endblock %}
-        
-        {# boque para javascript de cada vista --> #}
-        {% block js %}{% endblock %}
-        
-        {# Evitar Usar este para insertar javascript solo elemtos macro #}
-        {% block javascripts %}
-          <script src=" {{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
-          <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-        {% endblock %}
-    </body>
+    {% block css %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    {# bloque para contenido de la pagina #}
+    {% block body %}{% endblock %}
+
+    {# boque para javascript de cada vista --> #}
+    {% block js %}{% endblock %}
+
+    {# Evitar Usar este para insertar javascript solo elemtos macro #}
+    {% block javascripts %}
+        <script src=" {{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+        <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+{% endblock %}
+</body>
 </html>

@@ -1,21 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends "template.html.twig" %}
+
+{% block pageTitle %} Usuarios {% endblock %}
 
 {% block content_body %}
-    <h1>User edit</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <h4 class="col-xs-4">Editar Usuario</h4>
+                <a class="col-xs-3 col-xs-offset-5 btn btn-primary" href="{{ path('user_index') }}">Regresar</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn btn-primary" type="submit" value="Editar" />
+            {{ form_end(edit_form) }}
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <a class="btn btn-primary col-xs-3" href="{{ path('user_index') }}">Regresar</a>
+                {{ form_start(delete_form) }}
+                <input class="btn btn-primary col-xs-3 col-xs-offset-6" type="submit" value="Eliminar">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    </div>
 {% endblock %}

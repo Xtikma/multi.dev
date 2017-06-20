@@ -1,47 +1,49 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    {% block header %}
-        <div class="page-header">
-            <h1>ICODER<small> {% block title %}Juegos Nacionales{% endblock %}</small></h1>
-        </div>
-    {% endblock %}
-    {% block nav %}
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navar_collapse1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">ICODER</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navar_collapse1">
-                    {# Iclulle una vista que contiene el menu base #}
-                    {% include '::nav.html.twig' %}
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-    {% endblock %}
-    <section class="row"> 
-        {% block content %}
-            <article class="col-sm-9">
-                {% block content_body %}
-                    {#  agregue aquí el contenido del la vista #}
-                {% endblock %}
-            </article>
-            <sidebar class="col-sm-3">
-                {% block content_nav %}
-                    {# agregue aquí obciones para la vistac #}
-                {% endblock %}
-            </sidebar>
+    <div class="container-fluid col-xs-12">
+        {% block header %}
+            <div class="page-header">
+                <h1>ICODER<small> {% block title %}Juegos Nacionales{% endblock %}</small></h1>
+            </div>
         {% endblock %}
-    </section>
-    <footer class="row panel">
+        {% block nav %}
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navar_collapse1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">ICODER</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navar_collapse1">
+                        {# Iclulle una vista que contiene el menu base #}
+                        {% include '::nav.html.twig' %}
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        {% endblock %}
+        <section class="row"> 
+            {% block content %}
+                <article class="col-sm-9">
+                    {% block content_body %}
+                        {#  agregue aquí el contenido del la vista #}
+                    {% endblock %}
+                </article>
+                <sidebar class="col-sm-3">
+                    {% block content_nav %}
+                        {# agregue aquí obciones para la vistac #}
+                    {% endblock %}
+                </sidebar>
+            {% endblock %}
+        </section>
+    </div>
+    <footer class="footer panel col-xs-12">
         <div class="text-center">
             {% block footer_body %}
             {% endblock %}

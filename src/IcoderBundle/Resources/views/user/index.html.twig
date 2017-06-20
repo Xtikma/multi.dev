@@ -2,6 +2,8 @@
 
 {% block pageTitle %}Usuarios{% endblock %}
 
+{% block title %} Lista de usuarios {% endblock %}
+
 {% block content_body %}
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -30,7 +32,7 @@
                             <td class="hidden"></td>
                             <td class="hidden">{{ user.name }}</td>
                             <td class="hidden">{{ user.lastname }}</td>
-                            <td> <a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
+                            <td><a href="{{ path('user_edit', { 'id': user.id }) }}">{{ user.username }}</a></td>
                             <td class="hidden">{{ user.password }}</td>
                             <td>{{ user.dni }}</td>
                             <td>{{ user.email }}</td>
@@ -42,6 +44,7 @@
         </div>
         <div class="panel-footer">
             <div class="row">
+                <a class="btn btn-primary col-xs-3 col-xs-offset-9" href="{{ path('user_new') }}">Crear Usuario</a>
             </div>
         </div>
     </div>
