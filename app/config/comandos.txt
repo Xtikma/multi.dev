@@ -1,0 +1,28 @@
+//Ejecutar la aplicacion desde la consola
+php bin/console server:run
+
+//Validar la base de datos con el modelo actual
+php bin/console doctrine:schema:validate
+
+//Actulizar la el schema de la base de datos
+1)php bin/console doctrine:schema:update --dump-sql
+2)php bin/console doctrine:schema:update --force
+
+//Limpiar la cache
+php bin/console cache:clear --env=prod  //Este si es importante
+php bin/console cache:clear --env=dev   //dev no tiene cache a menos que lo activemos
+
+
+//donde estan las vistas
+    //de sistema
+        app/Resources/views
+    //del bundle
+        src/IcoderBundle/Resources/views
+
+// donde estan los routin
+    //de sistema
+        app/Resources/config
+    //del bundle
+        src/IcoderBundle/Resources/config
+    //de cada entidad
+        src/IcoderBundle/Resources/config/routin/{entiti_name}
