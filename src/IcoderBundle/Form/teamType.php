@@ -34,8 +34,4 @@ class teamType extends AbstractType
     {
         return 'icoderbundle_team';
     }
-
-    public function __toString() {
-        retu
-    }
 }
