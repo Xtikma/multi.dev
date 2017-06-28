@@ -13,7 +13,11 @@ class inscriptionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('register')->add('team')->add('edition')->add('user');
+        $builder
+                ->add('register')
+                ->add('team')
+                ->add('edition')
+                ->add('user');
     }
     
     /**

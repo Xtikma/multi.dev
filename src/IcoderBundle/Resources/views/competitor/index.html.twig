@@ -1,59 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:Default:index.html.twig' %}
 
-{% block body %}
-    <h1>Competitors list</h1>
 
-    <table>
+{% block pageTitle %}Competidores{% endblock %}
+
+{% block title %}Competidores{% endblock %}
+
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Lista de competidores</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('competitor_new')}}">Agregar competidor</a>
+{% endblock %}
+
+{% block panelBody %}
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Lastname1</th>
-                <th>Lastname2</th>
-                <th>Dni</th>
-                <th>Emil</th>
-                <th>Telephone</th>
-                <th>Height</th>
-                <th>Wight</th>
-                <th>Blood</th>
-                <th>Address</th>
-                <th>Active</th>
-                <th>Actions</th>
+                <th class="hidden">Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Sangre</th>
+                <th>Activo</th>
             </tr>
         </thead>
         <tbody>
-        {% for competitor in competitors %}
-            <tr>
-                <td><a href="{{ path('competitor_show', { 'id': competitor.id }) }}">{{ competitor.id }}</a></td>
-                <td>{{ competitor.name }}</td>
-                <td>{{ competitor.lastname1 }}</td>
-                <td>{{ competitor.lastname2 }}</td>
-                <td>{{ competitor.dni }}</td>
-                <td>{{ competitor.emil }}</td>
-                <td>{{ competitor.telephone }}</td>
-                <td>{{ competitor.height }}</td>
-                <td>{{ competitor.wight }}</td>
-                <td>{{ competitor.blood }}</td>
-                <td>{{ competitor.address }}</td>
-                <td>{% if competitor.active %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('competitor_show', { 'id': competitor.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('competitor_edit', { 'id': competitor.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for competitor in competitors %}
+                <tr>
+                    <td class="hidden"><a href="{{ path('competitor_show', { 'id': competitor.id }) }}">{{ competitor.id }}</a></td>
+                    <td> <a href="{{ path('competitor_show', { 'id': competitor.id }) }}">{{ competitor.name }}</a></td>
+                    <td>{{ competitor.lastname1 ~ " " ~ competitor.lastname2 }}</td>
+                    <td>{{ competitor.dni }}</td>
+                    <td>{{ competitor.emil }}</td>
+                    <td>{{ competitor.telephone }}</td>
+                    <td>{{ competitor.blood }}</td>
+                    <td>{% if competitor.active %}Yes{% else %}No{% endif %}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('competitor_new') }}">Create a new competitor</a>
-        </li>
-    </ul>
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('competitor_new')}}">Agregar competidor</a>
 {% endblock %}

@@ -273,4 +273,8 @@ class category
     {
         return $this->tests;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
 }

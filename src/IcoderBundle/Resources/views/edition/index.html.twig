@@ -1,49 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:Default:index.html.twig' %}
 
-{% block body %}
-    <h1>Editions list</h1>
+{% block pageTitle %}Ediciones{% endblock %}
 
-    <table>
+{% block title %}Ediciones{% endblock %}
+
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Lista de Ediciones</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('editions_new') }}">Agregar Edición</a>
+{% endblock %}
+
+{% block panelBody %}
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Year</th>
-                <th>Pace</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Active</th>
-                <th>Actions</th>
+                <th>Nombre</th>
+                <th>Año</th>
+                <th>Lugar</th>
+                <th>Inicio</th>
+                <th>Conclusión</th>
+                <th>Activa</th>
             </tr>
         </thead>
         <tbody>
         {% for edition in editions %}
             <tr>
-                <td><a href="{{ path('editions_show', { 'id': edition.id }) }}">{{ edition.id }}</a></td>
-                <td>{{ edition.name }}</td>
+                <td><a href="{{path('editions_show', { 'id' : edition.id })}}">{{ edition.name }}</a></td>
                 <td>{% if edition.year %}{{ edition.year|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ edition.pace }}</td>
                 <td>{% if edition.start %}{{ edition.start|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if edition.end %}{{ edition.end|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if edition.active %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('editions_show', { 'id': edition.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('editions_edit', { 'id': edition.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('editions_new') }}">Create a new edition</a>
-        </li>
-    </ul>
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('editions_new') }}">Agregar Edición</a>
+{% endblock %}
+
+
+{% block content_nav %}
+    {% include 'IcoderBundle:Default:nav_default.html.twig' %}
 {% endblock %}

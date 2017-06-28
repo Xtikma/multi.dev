@@ -13,7 +13,8 @@ class teamType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('competitors')->add('category');
+        $builder
+                ->add('name');
     }
     
     /**
@@ -34,5 +35,7 @@ class teamType extends AbstractType
         return 'icoderbundle_team';
     }
 
-
+    public function __toString() {
+        retu
+    }
 }

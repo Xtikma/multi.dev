@@ -183,4 +183,9 @@ class canton
     {
         return $this->province;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
+
 }

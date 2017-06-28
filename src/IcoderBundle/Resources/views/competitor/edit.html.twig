@@ -1,21 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:competitor:index.html.twig' %}
 
-{% block body %}
-    <h1>Competitor edit</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Editar competidor</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('competitor_index') }}">Listar Competidores</a>
+{% endblock %}
 
+{% block panelBody %}
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    {{ form_widget(edit_form) }}
+    <input class="btn btn-primary" type="submit" value="Editar" />
     {{ form_end(edit_form) }}
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('competitor_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('competitor_index') }}">Listar Competidores</a>
 {% endblock %}

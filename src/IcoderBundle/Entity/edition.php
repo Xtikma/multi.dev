@@ -269,4 +269,8 @@ class edition
     {
         return $this->inscriptions;
     }
+    
+    public function __toString() {
+        return $this->getName() . " " .$this->getYear()->format('Y');
+    }
 }

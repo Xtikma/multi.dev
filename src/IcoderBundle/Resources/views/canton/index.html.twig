@@ -1,55 +1,33 @@
-{% extends 'template.html.twig' %}
+{% extends 'IcoderBundle:province:index.html.twig' %}
 
-{% block content_body %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <h1 class="panel-title col-xs-3">Cantones</h1>
-                <a href="{{path('canton_new')}}" class="col-xs-3 col-xs-offset-9 btn btn-primary">Agregar cantón</a>
-            </div>
-        </div>
-    </div>
+{% block pageTitle %}Cantones{% endblock %}
 
-    <div class="panel-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th class="hidden">Id</th>
-                    <th>Name</th>
-                    <th>Active</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for canton in cantons %}
-                    <tr>
-                        <td><a href="{{ path('canton_show', { 'id': canton.id }) }}">{{ canton.id }}</a></td>
-                        <td>{{ canton.name }}</td>
-                        <td>{% if canton.active %}Yes{% else %}No{% endif %}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('canton_show', { 'id': canton.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('canton_edit', { 'id': canton.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+{% block title %}Cantones{% endblock %}
 
-
-    <div class="panel-footer">
-        <div class="row">
-            <a href="{{ path('canton_new') }}"class="col-xs-3 btn btn-primary">Agregar cantón</a>
-        </div>
-    </div>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Cantones</h1>
+    <a href="{{path('canton_new')}}" class="col-xs-3 col-xs-offset-6 btn btn-primary">Agregar cantón</a>
 {% endblock %}
 
-{% block content_nav %}
-    {% include 'IcoderBundle:canton:nav_canton.html.twig' %}
+{% block panelBody %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for canton in cantons %}
+                <tr>
+                    <td><a href="{{ path('canton_show', { 'id': canton.id }) }}">{{ canton.name }}</a></td>
+                    <td>{% if canton.active %}Si{% else %}No{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block panelFooter %}
+    <a href="{{ path('canton_new') }}"class="col-xs-3 btn btn-primary">Agregar cantón</a>
 {% endblock %}

@@ -148,4 +148,9 @@ class province
     {
         return $this->cantones;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
+
 }

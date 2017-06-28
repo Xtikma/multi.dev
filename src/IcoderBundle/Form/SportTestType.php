@@ -13,7 +13,13 @@ class SportTestType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('isFemale')->add('year1')->add('year2')->add('date')->add('category');
+        $builder
+                ->add('name')
+                ->add('isFemale')
+                ->add('year1')
+                ->add('year2')
+                ->add('date')
+                ->add('category');
     }
     
     /**

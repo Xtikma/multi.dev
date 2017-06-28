@@ -5,7 +5,28 @@
 {% block title %}Bienvenido sistema de inscripcion{% endblock %}
 
 {% block content_body %}
-    Bienvenido a inscripciones
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% block panelTitle %}
+                        Bienvenido a inscripciones
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            {% block panelBody %}
+            {% endblock %}
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    {% block panelFooter %} {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content_nav %}

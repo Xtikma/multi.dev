@@ -13,7 +13,21 @@ class competitorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('lastname1')->add('lastname2')->add('dni')->add('emil')->add('telephone')->add('height')->add('wight')->add('blood')->add('address')->add('active')->add('canton')->add('type')->add('teams');
+        $builder
+                ->add('name')
+                ->add('lastname1')
+                ->add('lastname2')
+                ->add('dni')
+                ->add('emil')
+                ->add('telephone')
+                ->add('height')
+                ->add('wight')
+                ->add('blood')
+                ->add('address')
+                ->add('active')
+                ->add('canton')
+                ->add('type')
+                ->add('teams');
     }
     
     /**

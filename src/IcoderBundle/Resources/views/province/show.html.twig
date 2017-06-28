@@ -1,36 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:province:index.html.twig' %}
 
-{% block body %}
-    <h1>Province</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Detalles Provincia</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('province_index') }}">Listar Provincias</a>
+{% endblock %}
 
-    <table>
+{% block panelBody %}
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ province.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ province.name }}</td>
             </tr>
             <tr>
-                <th>Active</th>
-                <td>{% if province.active %}Yes{% else %}No{% endif %}</td>
+                <th>Activo</th>
+                <td>{% if province.active %}Si{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('province_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('province_edit', { 'id': province.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-2" href="{{ path('province_edit', { 'id': province.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-2" href="{{ path('province_index') }}">Listar Provincias</a>
 {% endblock %}

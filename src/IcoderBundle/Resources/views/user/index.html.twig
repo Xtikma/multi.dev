@@ -1,55 +1,45 @@
-{% extends "template.html.twig" %}
+{% extends 'IcoderBundle:Default:index.html.twig' %}
 
 {% block pageTitle %}Usuarios{% endblock %}
 
-{% block title %} Lista de usuarios {% endblock %}
+{% block title %}Usuarios{% endblock %}
 
-{% block content_body %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <h1 class="panel-title col-xs-3">Lista de Usuarios</h1>
-                <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('user_new') }}">Crear Usuario</a>
-            </div>
-        </div>
-        <div class="panel-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="hidden">Id</th>
-                        <th class="hidden">Name</th>
-                        <th class="hidden">Lastname</th>
-                        <th>Username</th>
-                        <th class="hidden">Password</th>
-                        <th>Dni</th>
-                        <th>Email</th>
-                        <th>Active</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                        <tr>
-                            <td class="hidden"></td>
-                            <td class="hidden">{{ user.name }}</td>
-                            <td class="hidden">{{ user.lastname }}</td>
-                            <td><a href="{{ path('user_edit', { 'id': user.id }) }}">{{ user.username }}</a></td>
-                            <td class="hidden">{{ user.password }}</td>
-                            <td>{{ user.dni }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>{% if user.active %}Yes{% else %}No{% endif %}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <a class="btn btn-primary col-xs-3 col-xs-offset-9" href="{{ path('user_new') }}">Crear Usuario</a>
-            </div>
-        </div>
-    </div>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Lista de Usuarios</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('user_new') }}">Agregar Usuario</a>
 {% endblock %}
 
-{% block content_nav %}
-    {% include 'IcoderBundle:Default:nav_default.html.twig' %}
+{% block panelBody %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="hidden">Id</th>
+                <th class="hidden">Name</th>
+                <th class="hidden">Lastname</th>
+                <th>Username</th>
+                <th class="hidden">Password</th>
+                <th>Dni</th>
+                <th>Email</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td class="hidden"></td>
+                    <td class="hidden">{{ user.name }}</td>
+                    <td class="hidden">{{ user.lastname }}</td>
+                    <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
+                    <td class="hidden">{{ user.password }}</td>
+                    <td>{{ user.dni }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{% if user.active %}Yes{% else %}No{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block panelFooter %}
+        <a class="btn btn-primary col-xs-3" href="{{ path('user_new') }}">Agregar Usuario</a>
 {% endblock %}

@@ -1,48 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:sporttest:index.html.twig' %}
 
-{% block body %}
-    <h1>Sporttest</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Detalles</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('test_index') }}">Listar Pruebas</a>
+{% endblock %}
 
-    <table>
+{% block panelBody %}
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ sportTest.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ sportTest.name }}</td>
             </tr>
             <tr>
-                <th>Isfemale</th>
-                <td>{% if sportTest.isFemale %}Yes{% else %}No{% endif %}</td>
+                <th>Femenino</th>
+                <td>{% if sportTest.isFemale %}Si{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Year1</th>
-                <td>{% if sportTest.year1 %}{{ sportTest.year1|date('Y-m-d') }}{% endif %}</td>
+                <th>Rango</th>
+                <td>
+                    {% if sportTest.year1 %}{{ sportTest.year1|date('Y') }}{% endif %}
+                    -
+                    {% if sportTest.year2 %}{{ sportTest.year2|date('Y') }}{% endif %}
+                </td>
             </tr>
             <tr>
-                <th>Year2</th>
-                <td>{% if sportTest.year2 %}{{ sportTest.year2|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
+                <th>Fecha</th>
                 <td>{% if sportTest.date %}{{ sportTest.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('test_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('test_edit', { 'id': sportTest.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-2" href="{{ path('test_edit', { 'id': sportTest.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-2" href="{{ path('test_index') }}">Listar Pruebas</a>
 {% endblock %}

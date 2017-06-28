@@ -1,41 +1,37 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:Default:index.html.twig' %}
 
-{% block body %}
-    <h1>Sports list</h1>
+{% block pageTitle %}Deportes{% endblock %}
 
-    <table>
+{% block title %}Deportes{% endblock %}
+
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Lista de Desportes</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('sport_new') }}">Agregar Deporte</a>
+{% endblock %}
+
+{% block panelBody %}
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Active</th>
-                <th>Actions</th>
+                <th>Nombre</th>
+                <th>Activo</th>
             </tr>
         </thead>
         <tbody>
-        {% for sport in sports %}
-            <tr>
-                <td><a href="{{ path('sport_show', { 'id': sport.id }) }}">{{ sport.id }}</a></td>
-                <td>{{ sport.name }}</td>
-                <td>{% if sport.active %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('sport_show', { 'id': sport.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('sport_edit', { 'id': sport.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for sport in sports %}
+                <tr>
+                    <td><a href="{{ path('sport_show', { 'id': sport.id }) }}">{{ sport.name }}</a></td>
+                    <td>{% if sport.active %}Yes{% else %}No{% endif %}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('sport_new') }}">Create a new sport</a>
-        </li>
-    </ul>
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('sport_new') }}">Agregar Deporte</a>
+{% endblock %}
+
+{% block content_nav %}
+    {% include 'IcoderBundle:sport:nav_sport.html.twig' %}
 {% endblock %}

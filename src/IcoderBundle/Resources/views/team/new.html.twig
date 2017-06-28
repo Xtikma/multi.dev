@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:team:index.html.twig' %}
 
-{% block body %}
-    <h1>Team creation</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Agregar Equipo</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('team_index') }}">Listar Equipos</a>
+{% endblock %}
 
+{% block panelBody %}
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="Create" />
     {{ form_end(form) }}
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('team_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('team_index') }}">Listar Equipos</a>
 {% endblock %}

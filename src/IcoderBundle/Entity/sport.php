@@ -147,4 +147,8 @@ class sport
     {
         return $this->categories;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
 }

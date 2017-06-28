@@ -332,9 +332,6 @@ class user implements UserInterface, Serializable {
     }
 
     
-    public function __toString() {
-        return $this->getDni() . " " . $this->getName();
-    }
 
     public function getRoles() {
         return $this->roles;
@@ -363,5 +360,9 @@ class user implements UserInterface, Serializable {
     public function removeRole(\IcoderBundle\Entity\role $role)
     {
         $this->roles->removeElement($role);
+    }
+    
+    public function __toString() {
+        return $this->getDni() . " " . $this->getName();
     }
 }

@@ -13,7 +13,10 @@ class cantonType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('active')->add('province');
+        $builder
+                ->add('name')
+                ->add('active')
+                ->add('province');
     }
     
     /**

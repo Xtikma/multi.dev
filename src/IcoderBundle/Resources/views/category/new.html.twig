@@ -1,16 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:category:index.html.twig' %}
 
-{% block body %}
-    <h1>Category creation</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Agregar Categoria</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('sport_category_index') }}">Listar Categorias</a>
+{% endblock %}
 
+{% block panelBody %}
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="Agregar" />
     {{ form_end(form) }}
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('sport_category_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('sport_category_index') }}">Listar Categorias</a>
 {% endblock %}

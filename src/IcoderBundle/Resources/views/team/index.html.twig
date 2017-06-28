@@ -1,39 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:sport:index.html.twig' %}
 
-{% block body %}
-    <h1>Teams list</h1>
+{% block pageTitle %}Equipo{% endblock %}
 
-    <table>
+{% block title %}Equipo{% endblock %}
+
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Lista Equipos</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('team_new') }}">Agregar Equipo</a>
+{% endblock %}
+
+{% block panelBody %}
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
+                <th>Equipos</th>
             </tr>
         </thead>
         <tbody>
-        {% for team in teams %}
-            <tr>
-                <td><a href="{{ path('team_show', { 'id': team.id }) }}">{{ team.id }}</a></td>
-                <td>{{ team.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('team_show', { 'id': team.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('team_edit', { 'id': team.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for team in teams %}
+                <tr>
+                    <td><a href="{{ path('team_show', { 'id': team.id }) }}">{{ team.name }}</a></td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('team_new') }}">Create a new team</a>
-        </li>
-    </ul>
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('team_new') }}">Agregar Equipo</a>
 {% endblock %}

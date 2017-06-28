@@ -125,30 +125,6 @@ class team
     }
 
     /**
-     * Set category
-     *
-     * @param \IcoderBundle\Entity\category $category
-     *
-     * @return team
-     */
-    public function setCategory(\IcoderBundle\Entity\category $category = null)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \IcoderBundle\Entity\category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Add inscription
      *
      * @param \IcoderBundle\Entity\inscription $inscription
@@ -211,5 +187,9 @@ class team
     public function getSportTest()
     {
         return $this->sportTest;
+    }
+    
+    public function __toString() {
+        return $this->getName();
     }
 }

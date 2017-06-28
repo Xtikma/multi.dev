@@ -1,72 +1,62 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:competitor:index.html.twig' %}
 
-{% block body %}
-    <h1>Competitor</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Detalles competidor</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('competitor_index') }}">Listar Competidores</a>
+{% endblock %}
 
-    <table>
+
+{% block panelBody %}
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ competitor.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ competitor.name }}</td>
             </tr>
             <tr>
-                <th>Lastname1</th>
-                <td>{{ competitor.lastname1 }}</td>
+                <th>Apellido</th>
+                <td>{{competitor.lastname1 ~ " " ~ competitor.lastname2 }}</td>
             </tr>
             <tr>
-                <th>Lastname2</th>
-                <td>{{ competitor.lastname2 }}</td>
-            </tr>
-            <tr>
-                <th>Dni</th>
+                <th>Cedula</th>
                 <td>{{ competitor.dni }}</td>
             </tr>
             <tr>
-                <th>Emil</th>
+                <th>Correo</th>
                 <td>{{ competitor.emil }}</td>
             </tr>
             <tr>
-                <th>Telephone</th>
+                <th>Teléfono</th>
                 <td>{{ competitor.telephone }}</td>
             </tr>
             <tr>
-                <th>Height</th>
+                <th>Estatura</th>
                 <td>{{ competitor.height }}</td>
             </tr>
             <tr>
-                <th>Wight</th>
+                <th>Peso</th>
                 <td>{{ competitor.wight }}</td>
             </tr>
             <tr>
-                <th>Blood</th>
+                <th>Sangre</th>
                 <td>{{ competitor.blood }}</td>
             </tr>
             <tr>
-                <th>Address</th>
+                <th>Dirección</th>
                 <td>{{ competitor.address }}</td>
             </tr>
             <tr>
-                <th>Active</th>
+                <th>Activo</th>
                 <td>{% if competitor.active %}Yes{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('competitor_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('competitor_edit', { 'id': competitor.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-2" href="{{ path('competitor_edit', { 'id': competitor.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-2" href="{{ path('competitor_index') }}">Listar Competidores</a>
 {% endblock %}

@@ -152,4 +152,8 @@ class type
     {
         return $this->competitors;
     }
+    
+    public function __toString() {
+        return $this->getName();
+    }
 }

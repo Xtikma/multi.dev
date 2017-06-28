@@ -1,36 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:canton:index.html.twig' %}
 
-{% block body %}
-    <h1>Canton</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Detalles Cantón</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('canton_index') }}">Listar Cantones</a>
+{% endblock %}
 
+{% block panelBody %}
     <table class="table table-striped table-hover">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ canton.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ canton.name }}</td>
             </tr>
             <tr>
-                <th>Active</th>
-                <td>{% if canton.active %}Yes{% else %}No{% endif %}</td>
+                <th>Activo</th>
+                <td>{% if canton.active %}Si{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('canton_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('canton_edit', { 'id': canton.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-2" href="{{ path('canton_edit', { 'id': canton.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-2" href="{{ path('canton_index') }}">Listar Cantones</a>
 {% endblock %}

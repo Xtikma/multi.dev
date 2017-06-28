@@ -1,29 +1,20 @@
-{% extends "template.html.twig" %}
+{% extends 'IcoderBundle:user:index.html.twig' %}
 
-{% block pageTitle %} Usuarios {% endblock %}
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Editar Usuario</h1>
+    <a class="col-xs-3 col-xs-offset-6 btn btn-primary" href="{{ path('user_index') }}">Listar Usuarios</a>
+{% endblock %}
 
-{% block content_body %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <h4 class="col-xs-4">Editar Usuario</h4>
-                <a class="col-xs-3 col-xs-offset-5 btn btn-primary" href="{{ path('user_index') }}">Regresar</a>
-            </div>
-        </div>
-        <div class="panel-body">
-            {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
-            <input class="btn btn-primary" type="submit" value="Editar" />
-            {{ form_end(edit_form) }}
-        </div>
-        <div class="panel-footer">
-            <div class="row">
-                <a class="btn btn-primary col-xs-3" href="{{ path('user_index') }}">Regresar</a>
-                {{ form_start(delete_form) }}
-                <input class="btn btn-primary col-xs-3 col-xs-offset-6" type="submit" value="Eliminar">
-                {{ form_end(delete_form) }}
-            </div>
-        </div>
+{% block panelBody %}
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input class="btn btn-primary" type="submit" value="Editar" />
+    {{ form_end(edit_form) }}
+{% endblock %}
 
-    </div>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('user_index') }}">Listar Usuarios</a>
 {% endblock %}

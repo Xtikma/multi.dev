@@ -1,16 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:category:index.html.twig' %}
 
-{% block body %}
-    <h1>Category</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Detalles de categoria</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('sport_category_index') }}">Listar Categorias</a>
+{% endblock %}
 
-    <table>
+{% block panelBody %}
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ category.name }}</td>
             </tr>
             <tr>
@@ -18,27 +17,21 @@
                 <td>{{ category.quota }}</td>
             </tr>
             <tr>
-                <th>Isteam</th>
+                <th>Deporte Grupal</th>
                 <td>{% if category.isTeam %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Active</th>
-                <td>{% if category.active %}Yes{% else %}No{% endif %}</td>
+                <th>Activo</th>
+                <td>{% if category.active %}Si{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('sport_category_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('sport_category_edit', { 'id': category.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-2" href="{{ path('sport_category_edit', { 'id': category.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-2" href="{{ path('sport_category_index') }}">Listar Categorias</a>
 {% endblock %}

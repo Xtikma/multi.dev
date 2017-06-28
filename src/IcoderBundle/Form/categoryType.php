@@ -13,7 +13,12 @@ class categoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('quota')->add('isTeam')->add('active')->add('sport');
+        $builder
+                ->add('name')
+                ->add('quota')
+                ->add('isTeam')
+                ->add('active')
+                ->add('sport');
     }
     
     /**

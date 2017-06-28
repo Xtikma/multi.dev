@@ -1,27 +1,17 @@
-{% extends 'template.html.twig' %}
+{% extends 'IcoderBundle:province:index.html.twig' %}
 
-{% block css %}
-    <link href="{{ asset('css/forms/form.css') }}" rel="stylesheet" type="text/css"/>
+{% block panelTitle %}
+    <h1 class="panel-title col-xs-3">Agregar provincia</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{path('province_index')}}">Regresar</a>
 {% endblock %}
 
-{% block content_body %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <div class="row">
-                <h1 class="panel-title col-xs-3">Crear provincia</h1>
-                <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{path('province_index')}}">Regresar</a>
-            </div>
-        </div>
-        <div class="panel-body">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
-        </div>
-        
-        <div class="panel-footer">
-            <div class="row">
-                <a class="btn btn-primary col-xs-3" href="{{ path('province_index') }}">Regresar</a>
-            </div>
-        </div>
-    </div>
+{% block panelBody %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="Agregar" />
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block panelFooter %}
+    <a class="btn btn-primary col-xs-3" href="{{ path('province_index') }}">Regresar</a>
 {% endblock %}

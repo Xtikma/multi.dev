@@ -1,52 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:edition:index.html.twig' %}
 
-{% block body %}
-    <h1>Edition</h1>
+{% block panelTitle %}
+    <h1 class="panel-title">Edition</h1>
+    <a class="btn btn-primary col-xs-2 col-xs-offset-10" href="{{ path('editions_index') }}">Listar Ediciones</a>
+{% endblock %}
 
-    <table>
+{% block panelBody %}
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ edition.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ edition.name }}</td>
             </tr>
             <tr>
-                <th>Year</th>
-                <td>{% if edition.year %}{{ edition.year|date('Y-m-d') }}{% endif %}</td>
+                <th>Año</th>
+                <td>{% if edition.year %}{{ edition.year|date('Y') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Pace</th>
+                <th>Lugar</th>
                 <td>{{ edition.pace }}</td>
             </tr>
             <tr>
-                <th>Start</th>
+                <th>Inicio</th>
                 <td>{% if edition.start %}{{ edition.start|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>End</th>
+                <th>Finalizacion</th>
                 <td>{% if edition.end %}{{ edition.end|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Active</th>
+                <th>Activo</th>
                 <td>{% if edition.active %}Yes{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('editions_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('editions_edit', { 'id': edition.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-2" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-3" href="{{ path('editions_edit', { 'id': edition.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-2 col-xs-offset-3" href="{{ path('editions_index') }}">Listar Ediciones</a>
 {% endblock %}

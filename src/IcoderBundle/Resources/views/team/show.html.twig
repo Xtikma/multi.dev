@@ -1,32 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:team:index.html.twig' %}
 
-{% block body %}
-    <h1>Team</h1>
+{% block panelTitle %}
+    <h1 class="col-xs-3 panel-title">Equipo</h1>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('team_index') }}">Listar Equipos</a>
+{% endblock %}
 
-    <table>
+{% block panelBody %}
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ team.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
+                <th>Nombre</th>
                 <td>{{ team.name }}</td>
             </tr>
         </tbody>
     </table>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('team_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('team_edit', { 'id': team.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+{% block panelFooter %}
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary col-xs-3" type="submit" value="Eliminar">
+    {{ form_end(delete_form) }}
+    <a class="btn btn-primary col-xs-2 col-xs-offset-2" href="{{ path('team_edit', { 'id': team.id }) }}">Editar</a>
+    <a class="btn btn-primary col-xs-3 col-xs-offset-2" href="{{ path('team_index') }}">Listar Equipos</a>
 {% endblock %}
