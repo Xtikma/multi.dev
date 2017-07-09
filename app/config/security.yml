@@ -31,8 +31,18 @@ security:
             security: false          
         
         main:
-            http_basic:
-                provider: in_memory
+            anonymous: ~
+            provider: user_db
+            form_login:
+                login_path: /user/login
+                check_path: /user/login
+            logout:
+                path:   /user/logout
+                target: /
+                
+    access_control:
+      - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/, roles: ROLE_ADMIN }
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

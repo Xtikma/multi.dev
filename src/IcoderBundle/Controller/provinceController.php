@@ -42,10 +42,22 @@ class provinceController extends Controller
             $em->persist($province);
             $em->flush();
 
-            return $this->redirectToRoute('province_show', array('id' => $province->getId()));
+            return $this->redirectToRoute('province_index', array('id' => $province->getId()));
         }
 
         return $this->render('IcoderBundle:province:new.html.twig', array(
+            'province' => $province,
+            'form' => $form->createView(),
+        ));
+    }
+    
+    public function newSmallAction(Request $request) {
+        $province = new Province();
+        $province->setActive(true);
+        $form = $this->createForm('IcoderBundle\Form\provinceType', $province);
+        $form->handleRequest($request);
+        
+        return $this->render('IcoderBundle:province:newSmall.html.twig', array(
             'province' => $province,
             'form' => $form->createView(),
         ));

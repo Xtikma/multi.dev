@@ -12,7 +12,7 @@ use Serializable;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="IcoderBundle\Repository\userRepository")
  */
-class user implements UserInterface, Serializable {
+class user implements UserInterface {
 
     /**
      * @var int
@@ -50,7 +50,6 @@ class user implements UserInterface, Serializable {
      * @ORM\Column(name="password", type="string", length=64)
      */
     private $password;
-    
     private $plainPassword;
 
     /**
@@ -83,7 +82,7 @@ class user implements UserInterface, Serializable {
      */
     private $inscriptions;
 
-   /**
+    /**
      * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="role", inversedBy="users")
      * @ORM\JoinTable(name="users_role")
@@ -190,7 +189,7 @@ class user implements UserInterface, Serializable {
     public function getPassword() {
         return $this->password;
     }
-    
+
     function getPlainPassword() {
         return $this->plainPassword;
     }
@@ -199,7 +198,6 @@ class user implements UserInterface, Serializable {
         $this->plainPassword = $plainPassword;
     }
 
-    
     /**
      * Set dni
      *
@@ -271,6 +269,7 @@ class user implements UserInterface, Serializable {
      */
     public function __construct() {
         $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -304,39 +303,18 @@ class user implements UserInterface, Serializable {
         return $this->inscriptions;
     }
 
-
-
     public function getSalt() {
         /* Investigar para que es esta variable, no es obligatoria */
         return null;
     }
-    
-        public function eraseCredentials()
-    {
-    }
 
-    /** @see \Serializable::serialize() */
-    public function serialize() {
-        return serialize(array(
-            $this->id,
-            $this->username,
-        ));
+    public function eraseCredentials() {
+        
     }
-
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized) {
-        list (
-                $this->id,
-                $this->username,
-                ) = unserialize($serialized);
-    }
-
-    
 
     public function getRoles() {
-        return $this->roles;
+        return $this->roles->toArray();
     }
-
 
     /**
      * Add role
@@ -345,8 +323,7 @@ class user implements UserInterface, Serializable {
      *
      * @return user
      */
-    public function addRole(\IcoderBundle\Entity\role $role)
-    {
+    public function addRole(\IcoderBundle\Entity\role $role) {
         $this->roles[] = $role;
 
         return $this;
@@ -357,12 +334,12 @@ class user implements UserInterface, Serializable {
      *
      * @param \IcoderBundle\Entity\role $role
      */
-    public function removeRole(\IcoderBundle\Entity\role $role)
-    {
+    public function removeRole(\IcoderBundle\Entity\role $role) {
         $this->roles->removeElement($role);
     }
-    
+
     public function __toString() {
         return $this->getDni() . " " . $this->getName();
     }
+
 }

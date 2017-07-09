@@ -6,10 +6,94 @@
 {% endblock %}
 
 {% block panelBody %}
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input class="btn btn-primary" type="submit" value="Editar" />
-    {{ form_end(edit_form) }}
+    <div class="col-xs-12" >
+        <form class="form-horizontal" action="{{ path('competitor_edit', {'id':competitor.id})}}" method="POST">
+            <table class="table table-striped">
+                <tr>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Canton</th>
+                    <th>Activo</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ form_widget(edit_form.dni, { attr: {class: 'form-control'}}) }}
+                    </td>
+                    <td>
+                        {{ competitor.name }}
+                        {{ form_widget(edit_form.name, { attr: {class: 'hidden'}}) }}
+                    </td>
+                    <td>
+                        {{ competitor.lastname1 ~ " " ~ competitor.lastname2 }}
+                        {{ form_widget(edit_form.lastname1, { attr: {class: 'hidden'}}) }}
+                        {{ form_widget(edit_form.lastname2, { attr: {class: 'hidden'}}) }}
+                    </td>
+                    <td>
+                        {{ competitor.canton }}
+                        {{ form_widget(edit_form.canton, { attr: {class: 'hidden'}}) }}
+                    </td>
+                    <td>
+                        {{ form_widget(edit_form.active, { attr: {class: 'checkbox'}}) }}
+                    </td>
+                </tr>
+            </table>
+            <div class="col-xs-12">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Correo</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.emil, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-right col-xs-2 control-label">Teléfono</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.telephone, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-right col-xs-2 control-label">Dirección</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.address, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-right col-xs-2 control-label">Tipo</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.type, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Altura</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.height, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-right col-xs-2 control-label">Pesó</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.wight, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-right col-xs-2 control-label">Sangre</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.blood, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(edit_form.teams, { attr: {class: 'hidden'}}) }}
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <input class="btn btn-primary" type="submit" value="Editar" />
+                </div>
+            </div>
+        {{ form_end(edit_form) }}
+    </div>
 {% endblock %}
 
 {% block panelFooter %}

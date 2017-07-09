@@ -6,9 +6,33 @@
 {% endblock %}
 
 {% block panelBody %}
+
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input class="btn btn-primary" type="submit" value="Agregar" />
+
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-8 col-md-6 col-lg-5">
+            <div class="input-group">
+                <span class="input-group-addon" >Nombre</span>
+                {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="checkbox">
+                <label>
+                    {{ form_widget(form.active) }}Activo
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-xs-6 col-sm-4 col-md-3 col-lg-2">
+            <input class="btn btn-primary" type="submit" value="Agregar" />
+        </div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}
 

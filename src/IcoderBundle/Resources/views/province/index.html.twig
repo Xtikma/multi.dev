@@ -6,30 +6,20 @@
 
 {% block panelTitle %}
     <h1 class="panel-title col-xs-3">Provincias</h1>
-    <a href="{{ path('province_new') }}" class="col-xs-3 col-xs-offset-9 btn btn-primary">Agregar provincia</a>
 {% endblock %}
 
 {% block panelBody %}
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Activo</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for province in provinces %}
-                <tr>
-                    <td><a href="{{ path('province_show', { 'id': province.id }) }}">{{ province.name }}</a></td>
-                    <td>{% if province.active %}Si{% else %}No{% endif %}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+    <div class="panel hidden-xs">
+        {{ render(controller('IcoderBundle:province:newSmall'))}}
+    </div>
 
-{% block panelFooter %}
-    <a href="{{ path('province_new') }}"class="col-xs-3 btn btn-primary">Agregar provincia</a>
+    <div class="list-group col-xs-12 col-ms-4 col-md-3">
+        {% for province in provinces %}
+            <a class="list-group-item" href="{{ path('province_show', { 'id': province.id }) }}">
+                {{ province.name }}
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block content_nav %}

@@ -1,0 +1,5 @@
+<div class="list-group col-xs-12 col-sm-6 col-md-4">
+    {% for canton in cantons %}
+        <a class="list-group-item" href="{{ path('canton_show', { 'id': canton.id }) }}">{{ canton.name }}</a>
+    {% endfor %}
+</div>

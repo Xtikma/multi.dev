@@ -3,6 +3,11 @@ canton_index:
     defaults: { _controller: "IcoderBundle:canton:index" }
     methods:  GET
 
+view_list:
+    path:     /{id}/
+    defaults: { _controller: "IcoderBundle:canton:index" }
+    methods:  GET
+
 canton_show:
     path:     /{id}/show
     defaults: { _controller: "IcoderBundle:canton:show" }
@@ -11,6 +16,11 @@ canton_show:
 canton_new:
     path:     /new
     defaults: { _controller: "IcoderBundle:canton:new" }
+    methods:  [GET, POST]
+
+canton_new_small:
+    path:     /new/small
+    defaults: { _controller: "IcoderBundle:canton:new_small" }
     methods:  [GET, POST]
 
 canton_edit:

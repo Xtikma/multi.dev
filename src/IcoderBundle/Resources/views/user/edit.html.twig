@@ -6,9 +6,72 @@
 {% endblock %}
 
 {% block panelBody %}
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input class="btn btn-primary" type="submit" value="Editar" />
+    <form class="form-horizontal" action="{{ path('user_edit', {'id':user.id}) }}" method="POST">
+        <div  class="col-sm-6" >
+            <div class="form-group">
+                <label class="col-xs-12 control-label">
+                    {{ form_widget(edit_form.active)}} Activo
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Nombre</label>
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.name, { attr: {class: 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Apellido</label>
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.lastname, { attr: {class: 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label ">Cedula</label>
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.dni, { attr: {class: 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Correo</label>
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.email, { attr: {class: 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 control-label">Roles</label>
+                <div class="col-xs-10">
+                    {{ form_widget(edit_form.roles, { 'attr': {class: 'form-control list-group', choice_attr: 'list-item'}}) }}
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" name="Agregar" value="Editar"/>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Datos ingreso</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Usuario</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.username, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Contraseña</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.plainPassword.first, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Verificar</label>
+                        <div class="col-xs-10">
+                            {{ form_widget(edit_form.plainPassword.second, { attr: {class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     {{ form_end(edit_form) }}
 {% endblock %}
 

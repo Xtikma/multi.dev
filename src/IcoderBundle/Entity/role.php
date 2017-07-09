@@ -3,6 +3,8 @@
 namespace IcoderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Symfony\Component\Security\Core\Role\RoleInterface;
+
 
 /**
  * role
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="IcoderBundle\Repository\roleRepository")
  */
-class role
+class role implements RoleInterface
 {
     /**
      * @var int
@@ -65,6 +67,8 @@ class role
      *
      * @param string $role
      *
+     * MEtodo de RoleInterface
+     * 
      * @return role
      */
     public function setRole($role)
@@ -132,9 +136,6 @@ class role
         return $this->user;
     }
     
-    public function __toString() {
-        $this->getRole();
-    }
     /**
      * Constructor
      */
@@ -175,5 +176,10 @@ class role
     public function getUsers()
     {
         return $this->users;
+    }
+    
+    
+    public function __toString() {
+        return $this->getRole();
     }
 }

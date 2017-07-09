@@ -3,6 +3,7 @@
 namespace IcoderBundle\Controller;
 
 use IcoderBundle\Entity\canton;
+use IcoderBundle\Entity\province;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -10,20 +11,34 @@ use Symfony\Component\HttpFoundation\Request;
  * Canton controller.
  *
  */
-class cantonController extends Controller
-{
+class cantonController extends Controller {
+
     /**
      * Lists all canton entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $cantons = $em->getRepository('IcoderBundle:canton')->findAll();
 
         return $this->render('IcoderBundle:canton:index.html.twig', array(
-            'cantons' => $cantons,
+                    'cantons' => $cantons,
+        ));
+    }
+
+    public function view_listAction($province) {
+        $em = $this->getDoctrine()->getManager();
+
+        $provinceNew = new province();
+        $provinceNew = $this->getDoctrine()
+                ->getRepository('IcoderBundle:province')
+                ->find($province);
+
+        $cantons = $provinceNew->getCantones();
+
+        return $this->render('IcoderBundle:canton:view_list.html.twig', array(
+                    'cantons' => $cantons,
         ));
     }
 
@@ -31,23 +46,41 @@ class cantonController extends Controller
      * Creates a new canton entity.
      *
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $canton = new Canton();
         $form = $this->createForm('IcoderBundle\Form\cantonType', $canton);
         $form->handleRequest($request);
+        
+        $province = new province();
+        $province =$canton->getProvince();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($canton);
             $em->flush();
 
-            return $this->redirectToRoute('canton_show', array('id' => $canton->getId()));
+            return $this->redirectToRoute('province_show', array('id' => $province->getId()));
         }
 
         return $this->render('IcoderBundle:canton:new.html.twig', array(
-            'canton' => $canton,
-            'form' => $form->createView(),
+                    'canton' => $canton,
+                    'form' => $form->createView(),
+        ));
+    }
+
+    public function new_smallAction(Request $request, province $province) {
+        $canton = new canton();
+        $canton->setProvince($province);
+        $canton->setActive(true);
+        
+        $form = $this->createForm('IcoderBundle\Form\cantonType', $canton);
+        $form->handleRequest($request);
+        
+        
+
+        return $this->render('IcoderBundle:canton:new_small.html.twig', array(
+                    'canton' => $canton,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -55,13 +88,12 @@ class cantonController extends Controller
      * Finds and displays a canton entity.
      *
      */
-    public function showAction(canton $canton)
-    {
+    public function showAction(canton $canton) {
         $deleteForm = $this->createDeleteForm($canton);
 
         return $this->render('IcoderBundle:canton:show.html.twig', array(
-            'canton' => $canton,
-            'delete_form' => $deleteForm->createView(),
+                    'canton' => $canton,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -69,8 +101,7 @@ class cantonController extends Controller
      * Displays a form to edit an existing canton entity.
      *
      */
-    public function editAction(Request $request, canton $canton)
-    {
+    public function editAction(Request $request, canton $canton) {
         $deleteForm = $this->createDeleteForm($canton);
         $editForm = $this->createForm('IcoderBundle\Form\cantonType', $canton);
         $editForm->handleRequest($request);
@@ -82,9 +113,9 @@ class cantonController extends Controller
         }
 
         return $this->render('IcoderBundle:canton:edit.html.twig', array(
-            'canton' => $canton,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'canton' => $canton,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -92,8 +123,7 @@ class cantonController extends Controller
      * Deletes a canton entity.
      *
      */
-    public function deleteAction(Request $request, canton $canton)
-    {
+    public function deleteAction(Request $request, canton $canton) {
         $form = $this->createDeleteForm($canton);
         $form->handleRequest($request);
 
@@ -113,12 +143,12 @@ class cantonController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(canton $canton)
-    {
+    private function createDeleteForm(canton $canton) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('canton_delete', array('id' => $canton->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('canton_delete', array('id' => $canton->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

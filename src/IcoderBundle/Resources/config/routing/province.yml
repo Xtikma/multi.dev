@@ -12,6 +12,11 @@ province_new:
     path:     /new
     defaults: { _controller: "IcoderBundle:province:new" }
     methods:  [GET, POST]
+    
+province_newSmall:
+    path:     /newSmall
+    defaults: { _controller: "IcoderBundle:province:newSmall" }
+    methods:  [GET, POST]
 
 province_edit:
     path:     /{id}/edit

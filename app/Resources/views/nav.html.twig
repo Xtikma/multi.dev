@@ -1,21 +1,10 @@
+
 <ul class="nav navbar-nav">
     <li class="active"> <a href="/">Inicio</a></li>
-    <li> <a href="/competitor" >competidores</a> </li>
-    <li> <a href="/user" >Usuarios</a> </li>
-    <li> <a href="/sport" >Deportes</a> </li>
-    <li> <a href="/competitor/province" >Provincias</a> </li>
-    <li> <a href="/editions" >Ediciones</a> </li>
-    <li> <a href="/team/inscription" >Inscipciones</a> </li>
-        {# <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-            </ul>
-        </li> #}
+    <li> <a href="{{ url('competitor_index') }}" >competidores</a> </li>
+    <li> <a href="{{ url('user_index') }}" >Usuarios</a> </li>
+    <li> <a href="{{ url('sport_index') }}" >Deportes</a> </li>
+    <li> <a href="{{ url('province_index') }}" >Provincias</a> </li>
+    <li> <a href="{{ url('editions_index') }}" >Ediciones</a> </li>
+    <li> <a href="{{ url('inscription_index') }}" >Inscipciones</a> </li>
 </ul>

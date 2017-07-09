@@ -32,6 +32,7 @@ class userController extends Controller {
      */
     public function newAction(Request $request) {
         $user = new User();
+        $user->setActive(true);
         $form = $this->createForm('IcoderBundle\Form\userType', $user);
         $form->handleRequest($request);
 
@@ -77,9 +78,14 @@ class userController extends Controller {
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            
+            $password = $this->get('security.password_encoder')
+                    ->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
         }
 
         return $this->render('IcoderBundle:user:edit.html.twig', array(

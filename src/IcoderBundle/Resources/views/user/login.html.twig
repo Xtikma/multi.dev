@@ -21,27 +21,39 @@
                         <span class="card-title">Ingresar</span>
                     </div>
                     <div class="panel-body" >
-                        <form name="user" id="user" action="{{ url('user_login') }}" method="post">
+                        <form name="user" id="user"
+                              action="{{ url('user_login') }}" method="POST">
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon" id="label_username" >
                                         <span class="glyphicon glyphicon-user"></span>
                                     </span>
-                                    <input value="{{ last_username }}" placeholder="Nombre de Usuario"  id="username" name="username" type="text" class="form-control" aria-describedby="label_username">
+                                    <input value="{{ last_username }}"
+                                           placeholder="Nombre de Usuario" 
+                                           id="username" name="_username" 
+                                           type="text" class="form-control"
+                                           aria-describedby="label_username">
                                 </div>
                             </div>
 
                             <div class="form-group">  
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="label_username" ><span class="glyphicon glyphicon-asterisk"></span></span>
-                                    <input placeholder="Contraseña" id="password" name="password" type="password" class="form-control" aria-describedby="label_username">
+                                    <span class="input-group-addon" 
+                                          id="label_username" >
+                                        <span class="glyphicon glyphicon-asterisk"></span></span>
+                                    <input placeholder="Contraseña" id="password"
+                                           name="_password" type="password" 
+                                           class="form-control" 
+                                           aria-describedby="label_username"
+                                           onkeyup = "if(event.keyCode == 13)?sendFrom('user'):;">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="panel-footer">
                         <div class="row">
-                            <a class="btn btn-primary col-xs-6 col-xs-offset-3" onclick="sendFrom('user');">
+                            <a class="btn btn-primary col-xs-6 col-xs-offset-3"
+                               onclick="sendFrom('user');">
                                 <i class="glyphicon glyphicon-play"></i>
                                 Ingresar
                             </a>
