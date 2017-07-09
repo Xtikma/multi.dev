@@ -44,3 +44,7 @@
 {% block panelFooter %}
     <a class="btn btn-primary col-xs-3" href="{{ path('competitor_new')}}">Agregar competidor</a>
 {% endblock %}
+
+{% block content_nav %}
+    {% include 'IcoderBundle:competitor:nav_competitor.html.twig' %}
+{% endblock %}
