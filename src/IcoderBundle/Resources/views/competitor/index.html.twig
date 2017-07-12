@@ -7,7 +7,6 @@
 
 {% block panelTitle %}
     <h1 class="col-xs-3 panel-title">Lista de competidores</h1>
-    <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{ path('competitor_new')}}">Agregar competidor</a>
 {% endblock %}
 
 {% block panelBody %}
@@ -34,7 +33,7 @@
                     <td>{{ competitor.emil }}</td>
                     <td>{{ competitor.telephone }}</td>
                     <td>{{ competitor.blood }}</td>
-                    <td>{% if competitor.active %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if competitor.active %}Si{% else %}No{% endif %}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -42,7 +41,6 @@
 {% endblock %}
 
 {% block panelFooter %}
-    <a class="btn btn-primary col-xs-3" href="{{ path('competitor_new')}}">Agregar competidor</a>
 {% endblock %}
 
 {% block content_nav %}

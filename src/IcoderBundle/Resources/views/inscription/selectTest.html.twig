@@ -1,0 +1,38 @@
+{% extends "IcoderBundle:inscription:index.html.twig" %}
+
+{% block panelTitle %}
+    <h1 class="panel-title">Seleccione la prueba</h1>
+{% endblock %}
+
+{% block panelBody %}
+    
+    <form class="form-horizontal" action="{{ path('inscription_add') }}" method="post">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Buscar</label>
+            <div class="col-xs-7">
+                <input class="form-control" name="search"/>
+            </div>
+            <input class="btn btn-primary col-xs-2" type="submit" value="Buscar"/>
+        </div>
+    </form>
+
+    <div class="col-xs-12 list-group">
+        {% for test in tests %}
+            <a class="list-group-item" href="{{ path('inscription_new', {'id':canton.id,'test':test.id}) }}" >{{ test.name }}</a>
+        {% else %}
+            {% if search is null %}
+                <p>No hay pruevas</p>
+                <a href="{{ path('test_index') }}" >Agregar</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="col-xs-12">
+        <a class="btn btn-primary col-xs-3" href="{{path('inscription_add_test', {'id': canton.id})}}" >Limpiar</a>
+        <a class="btn btn-primary col-xs-3 col-xs-offset-6" href="{{path('inscription_add')}}" >Reiniciar</a>
+    </div>
+{% endblock %}
+
+{% block panelFooter %}
+
+{% endblock %}

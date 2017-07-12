@@ -25,7 +25,7 @@
         {% for edition in editions %}
             <tr>
                 <td><a href="{{path('editions_show', { 'id' : edition.id })}}">{{ edition.name }}</a></td>
-                <td>{% if edition.year %}{{ edition.year|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if edition.year %}{{ edition.year|date('Y') }}{% endif %}</td>
                 <td>{{ edition.pace }}</td>
                 <td>{% if edition.start %}{{ edition.start|date('Y-m-d') }}{% endif %}</td>
                 <td>{% if edition.end %}{{ edition.end|date('Y-m-d') }}{% endif %}</td>

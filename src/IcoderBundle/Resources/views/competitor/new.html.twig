@@ -1,17 +1,79 @@
-{% extends 'IcoderBundle:competitor:index.html.twig' %}
 
-{% block panelTitle %}
-    <h1 class="panel-title">Agregar Competidor</h1>
-    <a class="btn btn-primary col-xs-3 col-xs-offset-9" href="{{path('competitor_index') }}">Listar Competidores</a>
-{% endblock %}
-
-{% block panelBody %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input class="btn btn-primary" type="submit" value="Agregar" />
-    {{ form_end(form) }}
-{% endblock %}
-
-{% block panelFooter %}
-    <a class="btn btn-primary col-xs-3" href="{{path('competitor_index') }}">Listar Competidores</a>
-{% endblock %}
+<form class="form-horizontal" action="{{path('competitor_new',{'inscription': inscription.id, 'canton':competitor.canton.id, 'cedula':competitor.dni})}}" method="POST" >
+    <div class="form-group">
+        <div class="col-xs-2 col-xs-offset-10">
+            <label class="checkbox">{{ form_widget(form.active, {attr:{'class': ''}})}} Activo</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-xs-2">Cedula</label>
+        <div class="col-xs-10">
+                {{ form_widget(form.dni, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Nombre</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.name, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Primer Apellido</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.lastname1, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Segundo Apellido</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.lastname2, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Correo</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.emil, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Telefono</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.telephone, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Altura</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.height, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Peso</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.wight, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Sangre</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.blood, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Direccion</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.address, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2">Tipo competidor</label>
+            <div class="col-xs-10">
+                {{ form_widget(form.type, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.teams, {attr:{'class': 'hidden'}}) }}
+            {{ form_widget(form.canton, {attr:{'class': 'hidden'}}) }}
+        </div>
+        <input class="btn btn-primary" type="submit" value="Agregar" />
+        {{ form_end(form) }}

@@ -12,15 +12,16 @@
 </head>
 <body>
     {# bloque para contenido de la pagina #}
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
-    {# boque para javascript de cada vista --> #}
-    {% block js %}{% endblock %}
 
-    {# Evitar Usar este para insertar javascript solo elemtos macro #}
-    {% block javascripts %}
-        <script src=" {{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
-        <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
+{# Evitar Usar este para insertar javascript solo elemtos macro #}
+{% block javascripts %}
+    <script src=" {{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+    <script src=" {{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 {% endblock %}
+
+{# boque para javascript de cada vista --> #}
+{% block js %}{% endblock %}
 </body>
 </html>

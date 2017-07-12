@@ -1,39 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends 'IcoderBundle:Default:index.html.twig' %}
 
-{% block body %}
-    <h1>Inscriptions list</h1>
+{% block pageTitle %} Inscripciones {% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Register</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for inscription in inscriptions %}
-            <tr>
-                <td><a href="{{ path('inscription_show', { 'id': inscription.id }) }}">{{ inscription.id }}</a></td>
-                <td>{% if inscription.register %}{{ inscription.register|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('inscription_show', { 'id': inscription.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('inscription_edit', { 'id': inscription.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block title %} Inscripciones {% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('inscription_new') }}">Create a new inscription</a>
-        </li>
-    </ul>
+{% block panelTitle %}
+    <h1 class="panel-title">Lista de inscripciones</h1>
+{% endblock %}
+
+{% block panelBody %}
+    <div class="list-group">
+
+    </div>
+    {% for inscription in inscriptions %}
+        <a class="list-group-item col-xs-12" 
+           href="{{ path('inscription_show', { 'id': inscription.id }) }}">
+            <div class="col-xs-12 col-sm-9">
+                {{ inscription.team }}
+            </div>
+            <div class="col-xs-12 col-sm-3">
+                {% if inscription.register %}{{ inscription.register|date('Y-m-d') }}{% endif %}
+            </div>
+        </a>
+    {% else  %}
+        <p>No existen inscripciones aun</p>
+    {% endfor %}
+
+{% endblock %}
+
+{% block panelFooter %}
+    <a class="btn btn-primary" href="{{ path('inscription_add') }}">Agregar</a>
 {% endblock %}

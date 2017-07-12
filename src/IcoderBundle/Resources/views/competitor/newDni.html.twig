@@ -1,0 +1,10 @@
+<form class="form-horizontal" id="form_dni" name="form_dni" method="POST">
+    <div class="form-group">
+        <label class="col-xs-2" >Cedula</label>
+        <div class="col-xs-10">
+            <input required="true" type="text" maxlength="20" class="form-control" name="dni" id="dni"/>
+        </div>
+    </div>
+    <a id="new_competitor" href="{{ path('competitor_new', {'inscription':inscription.id, 'canton':canton.id}) }}" class="hidden" >new</a>
+    <button class="btn btn-primary" onclick="agregarCompetitor();" >Agregar</button>
+</form>

@@ -10,8 +10,7 @@
     <div class="container">
 
         {% if error %}
-            <div class="row" >{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {{ dump(last_username) }}
+            <div class="row" >Credenciales invalidas</div>
         {% endif %}
 
         <div class="row">

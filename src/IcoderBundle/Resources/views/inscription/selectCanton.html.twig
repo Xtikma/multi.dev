@@ -1,0 +1,36 @@
+{% extends "IcoderBundle:inscription:index.html.twig" %}
+
+{% block panelTitle %}
+    <h1 class="panel-title">Seleccione su cantón</h1>
+{% endblock %}
+
+{% block panelBody %}
+    <form class="form-horizontal" action="{{ path('inscription_add') }}" method="post">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Buscar</label>
+            <div class="col-xs-7">
+                <input class="form-control" name="search"/>
+            </div>
+            <input class="btn btn-primary col-xs-2" type="submit" value="Buscar"/>
+        </div>
+    </form>
+
+    <div class="list-group">
+        {% for canton in cantons %}
+            <a class="list-group-item" href="{{ path('inscription_add_test', {'id':canton.id}) }}" >{{ canton.name }}</a>
+        {% else %}
+            {% if search is null %}
+                <p>No hay cantones</p>
+                <a href="{{ path('canton_index') }}" >Agregar</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="col-xs-12">
+        <a class="btn btn-primary" href="{{path('inscription_add')}}" >Limpiar</a>
+    </div>
+{% endblock %}
+
+{% block panelFooter %}
+
+{% endblock %}

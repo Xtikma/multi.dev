@@ -6,10 +6,10 @@ inscription_index:
 inscription_show:
     path:     /{id}/show
     defaults: { _controller: "IcoderBundle:inscription:show" }
-    methods:  GET
+    methods:  [GET, POST]
 
 inscription_new:
-    path:     /new
+    path:     /{id}/{test}/new
     defaults: { _controller: "IcoderBundle:inscription:new" }
     methods:  [GET, POST]
 
@@ -22,3 +22,13 @@ inscription_delete:
     path:     /{id}/delete
     defaults: { _controller: "IcoderBundle:inscription:delete" }
     methods:  DELETE
+
+inscription_add:
+    path:     /add/canton
+    defaults: { _controller: "IcoderBundle:inscription:add" }
+    methods:  [GET, POST]
+    
+inscription_add_test:
+    path:     /add/{id}/test
+    defaults: { _controller: "IcoderBundle:inscription:addTest" }
+    methods:  [GET, POST]

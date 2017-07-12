@@ -268,4 +268,8 @@ class SportTest
     {
         return $this->category;
     }
+    
+    public function __toString() {
+        return $this->getName() . " " . (($this->getCategory())? $this->getCategory() : "");
+    }
 }

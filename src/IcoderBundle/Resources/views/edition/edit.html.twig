@@ -6,9 +6,61 @@
 {% endblock %}
 
 {% block panelBody %}
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type="submit" value="Edit" />
+    <form class="form-horizontal" action="{{path('editions_new')}}" method="POST">
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Año</label>
+            <div class="col-xs-8">
+                {{ form_widget(edit_form.year.year,{attr:{'class':'form-control'}}) }}
+                {{ form_widget(edit_form.year.month,{attr:{'class':'hidden'}}) }}
+                {{ form_widget(edit_form.year.day,{attr:{'class':'hidden'}}) }}
+            </div>
+            <div class="col-xs-2">
+                <label class="checkbox">
+                    {{ form_widget(edit_form.active)}} Activo
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Nombre</label>
+            <div class="col-xs-10">
+                {{ form_widget(edit_form.name, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Lugar</label>
+            <div class="col-xs-10">
+                {{ form_widget(edit_form.pace, {attr:{'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Inicio</label>
+            <div class="col-xs-10">
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_widget(edit_form.start.year, {attr:{'class': 'form-control'}}) }}
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_widget(edit_form.start.month, {attr:{'class': 'form-control'}}) }}
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_widget(edit_form.start.day, {attr:{'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label">Finaliza</label>
+            <div class="col-xs-10">
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_widget(edit_form.end.year, {attr:{'class': 'form-control'}}) }}
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_widget(edit_form.end.month, {attr:{'class': 'form-control'}}) }}
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_widget(edit_form.end.day, {attr:{'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    <input type="submit" value="Editar" />
     {{ form_end(edit_form) }}
 {% endblock %}
 

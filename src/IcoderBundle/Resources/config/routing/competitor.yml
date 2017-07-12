@@ -9,8 +9,13 @@ competitor_show:
     methods:  GET
 
 competitor_new:
-    path:     /new
+    path:     /{inscription}/{canton}/new
     defaults: { _controller: "IcoderBundle:competitor:new" }
+    methods:  [GET, POST]
+    
+competitor_new_by_dni:
+    path:     /{inscription}/{canton}/new
+    defaults: { _controller: "IcoderBundle:competitor:newByDni" }
     methods:  [GET, POST]
 
 competitor_edit:

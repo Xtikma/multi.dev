@@ -24,6 +24,11 @@
                     <div class="collapse navbar-collapse" id="navar_collapse1">
                         {# Iclulle una vista que contiene el menu base #}
                         {% include '::nav.html.twig' %}
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="">{{ app.user.username }}</a></li>
+                            <li><a href="{{ path('user_logout') }}">Salir</a></li>
+                        </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
@@ -40,6 +45,10 @@
                         {# agregue aquí obciones para la vistac #}
                     {% endblock %}
                 </sidebar>
+            {% endblock %}
+        </section>
+        <section>
+            {% block modal %}
             {% endblock %}
         </section>
     </div>
