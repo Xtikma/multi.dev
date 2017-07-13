@@ -37,27 +37,26 @@ class competitorController extends Controller {
     public function newAction(Request $request, inscription $ins, canton $can) {
         $dni = $request->request->get('dni');
 
-        $competitorOld = new competitor();
         $em = $this->getDoctrine()->getManager();
         $competitorOld = $em->getRepository('IcoderBundle:competitor')
                 ->findOneBy(array('dni' => $dni));
 
-        $competitor = new competitor();
+        $competitor = null;
         if (is_null($competitorOld)) {
             $repo = $em->getRepository('IcoderBundle:civil');
             $person = $repo->findOneBy(array(
                 'dni' => $dni
             ));
-            
+
             $competitor = new competitor();
             $competitor->setActive(true);
-            if($person) {
+            if ($person) {
                 $competitor->setName($person->getName());
                 $competitor->setLastname1($person->getLastname1());
                 $competitor->setLastname2($person->getLastname2());
             }
         } else {
-            $competitor->setActive($competitorOld->getActive());
+            $competitor = $competitorOld;
         }
         $competitor->setCanton($can);
 
@@ -83,13 +82,13 @@ class competitorController extends Controller {
         $error = ($signedUp != 0) ? "Competidor Inscrito" : null;
         $error = ($competitor->getActive()) ? $error : "Competidor inactivo";
         $error = ($error) ? $error : 0;
+        
         if ($error) {
-            return $this->redirectToRoute('inscription_show', array(
-                        'id' => $ins->getId(),
-                        'error' => $error
+            return $this->render('IcoderBundle:competitor:error.html.twig', array(
+                'error' => $error
             ));
         }
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             if (is_null($competitorOld)) {
                 $em->persist($competitor);
@@ -98,6 +97,7 @@ class competitorController extends Controller {
             $em->flush();
             return $this->redirectToRoute('inscription_show', array(
                         'id' => $ins->getId(),
+                        'can' => $can->getId(),
                         'error' => $error
             ));
         }

@@ -104,16 +104,16 @@ class inscriptionController extends Controller {
      * valida y crea las inscripciones agregando el equipo por defecto
      * 
      * @param Request $request
-     * @param canton $canton
+     * @param canton $can
      * @param SportTest $test
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function newAction(Request $request, canton $canton, SportTest $test) {
+    public function newAction(Request $request, canton $can, SportTest $test) {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('IcoderBundle:edition');
         $edition = $repository->findOneByActive(true);
 
-        $teamName = $canton->getName() . '-' . $test . '-' . $edition->getYear()->format('Y');
+        $teamName = $can->getName() . '-' . $test . '-' . $edition->getYear()->format('Y');
         $team = $em->getRepository('IcoderBundle:team')->findOneByName($teamName);
 
         $flag = is_null($team);
@@ -148,7 +148,7 @@ class inscriptionController extends Controller {
 
         return $this->redirectToRoute('inscription_show', array(
                     'id' => $inscription->getID(),
-                    'can' => $canton,
+                    'can' => $can->getId(),
                     'error' => 0,
         ));
     }
