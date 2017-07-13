@@ -37,23 +37,40 @@ class competitorController extends Controller {
         $dni = $request->request->get('dni');
 
         $em = $this->getDoctrine()->getManager();
-        $competitor = $em->getRepository('IcoderBundle:competitor')
+        $competitorOld = $em->getRepository('IcoderBundle:competitor')
                 ->findOneBy(array('dni' => $dni));
 
-        if (is_null($competitor)) {
-            $competitor = new competitor();
-            $competitor->setDni($dni);
-            $competitor->addTeam($ins->getTeam());
-            $competitor->setCanton($can);
-            $competitor->setActive(true);
+        $competitor = new competitor();
+        $competitor = (is_null($competitorOld)) ? ((new competitor())->setDni($dni)) : $competitorOld;
+        $competitor->setActive(true);
+        $competitor->setCanton($can);
+
+        $signedUp = false;
+        foreach ($competitor->getTeams() as $team) {
+            $inscriptionsOld = $team->getInscriptions();
+            foreach ($inscriptionsOld as $inscriptionOld) {
+                $signedUp = ($inscriptionOld->getEdition()->getId() == $ins->getEdition()->getId());
+                if ($signedUp) {
+                    break;
+                }
+            }
+            unset($inscriptionOld);
+            if ($signedUp) {
+                break;
+            }
         }
+        unset($team);
 
         $form = $this->createForm('IcoderBundle\Form\competitorType', $competitor);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$competitor->getTeams()->contains($ins->getTeam())) {
+            if (is_null($competitorOld)) {
                 $em->persist($competitor);
+            }
+            if ($signedUp != 0) {
+                $competitor->addTeam($ins->getTeam());
                 $em->flush();
             }
             return $this->redirectToRoute('inscription_show', array('id' => $ins->getId()));

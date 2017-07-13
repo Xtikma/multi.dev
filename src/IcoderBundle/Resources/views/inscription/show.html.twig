@@ -40,20 +40,34 @@
                     <td><input type="checkbox" disabled="true" class="checkbox" checked="{{ competitor.active }}"/></td>
                 </tr>
             {% else %}
-                <p>No hay competidores registrados</p>
-            {% endfor %}
-        </tbody>
-    </table>
+            <p>No hay competidores registrados</p>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+
 
 {% block panelFooter %}
 {% endblock %}
 
-{% block modalText %}Agregar{% endblock %}
+{% block modalText %}
+    {% if inscription.edition.active %}
+        Agregar
+    {% else %}
+        Edicion terminada
+    {% endif %}
+{% endblock %}
+
 {% block modalBody %}
-    {{ render(controller('IcoderBundle:competitor:newByDni', {'ins': inscription.id,'can':canton.id, }))}}
+    {% if inscription.edition.active %}
+        {{ render(controller('IcoderBundle:competitor:newByDni', {'ins': inscription.id,'can':canton.id, }))}}
+    {% else %}
+        <h1>Edicion terminada</h1>
+    {% endif %}
 {% endblock %}
 
 {% block js %}
-            <script src=" {{ asset('js/competitors.js') }}" type="text/javascript"></script>
+    {% if inscription.edition.active %}
+        <script src=" {{ asset('js/competitors.js') }}" type="text/javascript"></script>
+    {% endif %}
 {% endblock %}
