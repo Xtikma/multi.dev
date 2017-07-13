@@ -72,10 +72,10 @@ class inscriptionController extends Controller {
     /**
      * metodo para seleccionar el SportTest a inscribir
      * @param Request $request
-     * @param canton $canton
+     * @param canton $can
      * @return type
      */
-    public function addTestAction(Request $request, canton $canton) {
+    public function addTestAction(Request $request, canton $can) {
 
         $search = $request->request->get("search", null);
 
@@ -96,7 +96,7 @@ class inscriptionController extends Controller {
         return $this->render('IcoderBundle:inscription:selectTest.html.twig', array(
                     'tests' => $tests,
                     'search' => $search,
-                    'canton' => $canton,
+                    'canton' => $can,
         ));
     }
 
