@@ -33,7 +33,7 @@ class competitorController extends Controller {
      * Creates a new competitor entity.
      *
      */
-    public function newAction(Request $request, inscription $inscription, canton $canton) {
+    public function newAction(Request $request, inscription $ins, canton $can) {
         $dni = $request->request->get('dni');
 
         $em = $this->getDoctrine()->getManager();
@@ -43,8 +43,8 @@ class competitorController extends Controller {
         if (is_null($competitor)) {
             $competitor = new competitor();
             $competitor->setDni($dni);
-            $competitor->addTeam($inscription->getTeam());
-            $competitor->setCanton($canton);
+            $competitor->addTeam($ins->getTeam());
+            $competitor->setCanton($can);
             $competitor->setActive(true);
         }
 
@@ -52,24 +52,24 @@ class competitorController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$competitor->getTeams()->contains($inscription->getTeam())) {
+            if (!$competitor->getTeams()->contains($ins->getTeam())) {
                 $em->persist($competitor);
                 $em->flush();
             }
-            return $this->redirectToRoute('inscription_show', array('id' => $inscription->getId()));
+            return $this->redirectToRoute('inscription_show', array('id' => $ins->getId()));
         }
 
         return $this->render('IcoderBundle:competitor:new.html.twig', array(
                     'competitor' => $competitor,
-                    'inscription' => $inscription,
+                    'inscription' => $ins,
                     'form' => $form->createView(),
         ));
     }
 
-    public function newByDniAction(Request $request, inscription $inscription, canton $canton) {
+    public function newByDniAction(Request $request, inscription $ins, canton $can) {
         return $this->render('IcoderBundle:competitor:newDni.html.twig', array(
-                    'inscription' => $inscription,
-                    'canton' => $canton,
+                    'inscription' => $ins,
+                    'canton' => $can,
         ));
     }
 

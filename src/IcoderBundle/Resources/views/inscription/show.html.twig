@@ -51,7 +51,7 @@
 
 {% block modalText %}Agregar{% endblock %}
 {% block modalBody %}
-    {{ render(controller('IcoderBundle:competitor:newByDni', {'inscription': inscription.id,'canton':canton.id, }))}}
+    {{ render(controller('IcoderBundle:competitor:newByDni', {'ins': inscription.id,'can':canton.id, }))}}
 {% endblock %}
 
 {% block js %}

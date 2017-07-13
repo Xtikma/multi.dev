@@ -1,5 +1,5 @@
 
-<form class="form-horizontal" action="{{path('competitor_new',{'inscription': inscription.id, 'canton':competitor.canton.id, 'cedula':competitor.dni})}}" method="POST" >
+<form class="form-horizontal" action="{{path('competitor_new',{'ins': inscription.id, 'can':competitor.canton.id})}}" method="POST" >
     <div class="form-group">
         <div class="col-xs-2 col-xs-offset-10">
             <label class="checkbox">{{ form_widget(form.active, {attr:{'class': ''}})}} Activo</label>

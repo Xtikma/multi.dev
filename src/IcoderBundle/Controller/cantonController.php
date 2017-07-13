@@ -50,22 +50,22 @@ class cantonController extends Controller {
         $canton = new Canton();
         $form = $this->createForm('IcoderBundle\Form\cantonType', $canton);
         $form->handleRequest($request);
-        
+
         $province = new province();
         $province = $canton->getProvince();
-        
-        
+
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $repo =  $em->getRepository('IcoderBundle:canton');
+            $repo = $em->getRepository('IcoderBundle:canton');
             $cantonOld = $repo->findOneBy(array('name' => $canton->getName()));
-            
-            if(is_null($cantonOld)) {
-            $em->persist($canton);
-            $em->flush();
+
+            if (is_null($cantonOld)) {
+                $em->persist($canton);
+                $em->flush();
             }
 
-            return $this->redirectToRoute('province_show', array('id' => $province->getId());
+            return $this->redirectToRoute('province_show', array('id' => $province->getId()));
         }
 
         return $this->render('IcoderBundle:canton:new.html.twig', array(
@@ -78,11 +78,11 @@ class cantonController extends Controller {
         $canton = new canton();
         $canton->setProvince($province);
         $canton->setActive(true);
-        
+
         $form = $this->createForm('IcoderBundle\Form\cantonType', $canton);
         $form->handleRequest($request);
-        
-        
+
+
 
         return $this->render('IcoderBundle:canton:new_small.html.twig', array(
                     'canton' => $canton,

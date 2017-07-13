@@ -5,6 +5,6 @@
             <input required="true" type="text" maxlength="20" class="form-control" name="dni" id="dni"/>
         </div>
     </div>
-    <a id="new_competitor" href="{{ path('competitor_new', {'inscription':inscription.id, 'canton':canton.id}) }}" class="hidden" >new</a>
+    <a id="new_competitor" href="{{ path('competitor_new', {'ins':inscription.id, 'can':canton.id}) }}" class="hidden" >new</a>
     <button class="btn btn-primary" onclick="agregarCompetitor();" >Agregar</button>
 </form>
