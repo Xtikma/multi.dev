@@ -169,7 +169,7 @@ class inscriptionController extends Controller {
         return $this->render('IcoderBundle:inscription:show.html.twig', array(
                     'inscription' => $inscription,
                     'competitors' => $competitors,
-                    'canton' => $canton,
+                    'canton' => $can,
                     'error' => $error,
         ));
     }
