@@ -4,7 +4,7 @@ canton_index:
     methods:  GET
 
 view_list:
-    path:     /{id}/
+    path:     /{id}/list
     defaults: { _controller: "IcoderBundle:canton:index" }
     methods:  GET
 

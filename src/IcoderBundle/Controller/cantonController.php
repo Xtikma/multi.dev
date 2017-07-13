@@ -52,14 +52,20 @@ class cantonController extends Controller {
         $form->handleRequest($request);
         
         $province = new province();
-        $province =$canton->getProvince();
-
+        $province = $canton->getProvince();
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $repo =  $em->getRepository('IcoderBundle:canton');
+            $cantonOld = $repo->findOneBy(array('name' => $canton->getName()));
+            
+            if(is_null($cantonOld)) {
             $em->persist($canton);
             $em->flush();
+            }
 
-            return $this->redirectToRoute('province_show', array('id' => $province->getId()));
+            return $this->redirectToRoute('province_show', array('id' => $province->getId());
         }
 
         return $this->render('IcoderBundle:canton:new.html.twig', array(

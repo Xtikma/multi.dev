@@ -38,3 +38,17 @@ access_control:
 access_control:
         - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
+        
+        
+                    anonymous: ~
+            provider: user_db
+            form_login:
+                login_path: /user/login
+                check_path: /user/login
+            logout:
+                path:   /user/logout
+                target: /
+                
+    access_control:
+      - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/, roles: ROLE_ADMIN }

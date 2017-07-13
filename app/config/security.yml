@@ -24,6 +24,10 @@ security:
                 class: IcoderBundle:user
                 property: username
                 
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+    
+    
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -42,7 +46,7 @@ security:
                 
     access_control:
       - { path: /user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-      - { path: ^/, roles: ROLE_ADMIN }
+      - { path: ^/, roles: ROLE_USER }
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

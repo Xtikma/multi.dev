@@ -5,6 +5,7 @@
     <div class="panel-body">
         <div class="col-xs-10 col-xs-offset-1">
             <div class="list-group">
+                {% if is_granted('ROLE_ADMIN') %}
                 <div class="" id="collapse">
                     <a class="list-group-item" data-toggle="collapse" data-parent="#collapse" href="#competidores">
                         Competidores
@@ -59,9 +60,10 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 <div class="" id="collapse">
                     <a class="list-group-item" data-toggle="collapse" data-parent="#collapse" href="#inscripciones">
-                        Incripciones
+                        Inscripciones
                     </a>
                     <div id="inscripciones" class="panel-collapse collapse">
                         <div class="col-xs-offset-1">
