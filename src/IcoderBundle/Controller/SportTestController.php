@@ -33,9 +33,11 @@ class SportTestController extends Controller
      */
     public function newAction(Request $request)
     {
-        $sportTest = new Sporttest();
+        $sportTest = new SportTest();
+        $sportTest->setDate(new \DateTime("now"));
         $form = $this->createForm('IcoderBundle\Form\SportTestType', $sportTest);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

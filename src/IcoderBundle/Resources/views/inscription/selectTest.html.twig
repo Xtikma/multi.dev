@@ -21,8 +21,7 @@
             <a class="list-group-item" href="{{ path('inscription_new', {'id':canton.id,'test':test.id}) }}" >{{ test.name }}</a>
         {% else %}
             {% if search is null %}
-                <p>No hay pruevas</p>
-                <a href="{{ path('test_index') }}" >Agregar</a>
+                <p>No hay pruebas</p>
             {% endif %}
         {% endfor %}
     </div>
