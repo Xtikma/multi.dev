@@ -6,6 +6,7 @@ use IcoderBundle\Entity\competitor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use IcoderBundle\Entity\canton;
+use IcoderBundle\Entity\civil;
 use IcoderBundle\Entity\team;
 use IcoderBundle\Entity\inscription;
 
@@ -36,13 +37,28 @@ class competitorController extends Controller {
     public function newAction(Request $request, inscription $ins, canton $can) {
         $dni = $request->request->get('dni');
 
+        $competitorOld = new competitor();
         $em = $this->getDoctrine()->getManager();
         $competitorOld = $em->getRepository('IcoderBundle:competitor')
                 ->findOneBy(array('dni' => $dni));
 
         $competitor = new competitor();
-        $competitor = (is_null($competitorOld)) ? ((new competitor())->setDni($dni)) : $competitorOld;
-        $competitor->setActive(true);
+        if (is_null($competitorOld)) {
+            $repo = $em->getRepository('IcoderBundle:civil');
+            $person = $repo->findOneBy(array(
+                'dni' => $dni
+            ));
+            
+            $competitor = new competitor();
+            $competitor->setActive(true);
+            if($person) {
+                $competitor->setName($person->getName());
+                $competitor->setLastname1($person->getLastname1());
+                $competitor->setLastname2($person->getLastname2());
+            }
+        } else {
+            $competitor->setActive($competitorOld->getActive());
+        }
         $competitor->setCanton($can);
 
         $signedUp = false;
