@@ -25,7 +25,17 @@ class inscriptionController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $inscriptions = $em->getRepository('IcoderBundle:inscription')->findAll();
+        $repository = $em->getRepository('IcoderBundle:edition');
+        $edition = $repository->findOneByActive(true);
+        $inscriptions = null;
+        if ($edition) {
+            $inscriptions = $em->getRepository('IcoderBundle:inscription')->findBy(
+                    array(
+                        'edition' => $edition
+            ));
+        } else {
+            $inscriptions = $em->getRepository('IcoderBundle:inscription')->findAll();
+        }
 
         return $this->render('IcoderBundle:inscription:index.html.twig', array(
                     'inscriptions' => $inscriptions,
@@ -132,13 +142,14 @@ class inscriptionController extends Controller {
             $inscription = $em->getRepository('IcoderBundle:inscription')
                     ->findOneBy(array(
                 'team' => $team,
-                'edition' => $edition,
-                'user' => $this->getUser()
+                'edition' => $edition
             ));
         }
 
         return $this->redirectToRoute('inscription_show', array(
                     'id' => $inscription->getID(),
+                    'can' => $canton,
+                    'error' => 0,
         ));
     }
 
@@ -147,18 +158,19 @@ class inscriptionController extends Controller {
      * para inscribir competidores
      *
      */
-    public function showAction(inscription $inscription, canton $canton) {
+    public function showAction(inscription $inscription, canton $can, $error) {
         //bandera para no se pueden hacer cambios
         if ($inscription->getEdition()->getEnd() > new \DateTime("now")) {
             $inscription->getEdition()->setActive(FALSE);
             $this->getDoctrine()->getManager()->flush();
         }
-        
+
         $competitors = $inscription->getTeam()->getCompetitors();
         return $this->render('IcoderBundle:inscription:show.html.twig', array(
                     'inscription' => $inscription,
                     'competitors' => $competitors,
                     'canton' => $canton,
+                    'error' => $error,
         ));
     }
 

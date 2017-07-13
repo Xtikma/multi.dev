@@ -2,7 +2,7 @@
 <ul class="nav navbar-nav">
     <li class="active"> <a href="/">Inicio</a></li>
     {% if is_granted('ROLE_ADMIN') %}
-    <li> <a href="{{ url('competitor_index') }}" >competidores</a> </li>
+    <li> <a href="{{ url('competitor_index') }}" >Competidores</a> </li>
     <li> <a href="{{ url('user_index') }}" >Usuarios</a> </li>
     <li> <a href="{{ url('sport_index') }}" >Deportes</a> </li>
     <li> <a href="{{ url('province_index') }}" >Provincias</a> </li>

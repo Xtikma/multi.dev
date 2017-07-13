@@ -27,8 +27,8 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             {% if app.user %}
-                            <li><a href="">{{ app.user.username }}</a></li>
-                            <li><a href="{{ path('user_logout') }}">Salir</a></li>
+                                <li><a href="">{{ app.user.name }}</a></li>
+                                <li><a href="{{ path('user_logout') }}">Salir</a></li>
                             {% endif %}
                         </ul>
                     </div><!-- /.navbar-collapse -->

@@ -9,22 +9,20 @@
 {% endblock %}
 
 {% block panelBody %}
-    <div class="list-group">
-
+    <div class="list-group col-xs-12">
+        {% for inscription in inscriptions %}
+            <div class="list-group-item col-xs-12">
+                <div class="col-xs-12 col-sm-9">
+                    {{ inscription.team }}
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    {% if inscription.register %}{{ inscription.register|date('Y-m-d') }}{% endif %}
+                </div>
+            </div>
+        {% else  %}
+            <p>No existen inscripciones aun</p>
+        {% endfor %}
     </div>
-    {% for inscription in inscriptions %}
-        <a class="list-group-item col-xs-12" 
-           href="{{ path('inscription_show', { 'id': inscription.id }) }}">
-            <div class="col-xs-12 col-sm-9">
-                {{ inscription.team }}
-            </div>
-            <div class="col-xs-12 col-sm-3">
-                {% if inscription.register %}{{ inscription.register|date('Y-m-d') }}{% endif %}
-            </div>
-        </a>
-    {% else  %}
-        <p>No existen inscripciones aun</p>
-    {% endfor %}
 
 {% endblock %}
 

@@ -64,16 +64,26 @@ class competitorController extends Controller {
         $form = $this->createForm('IcoderBundle\Form\competitorType', $competitor);
         $form->handleRequest($request);
 
+        $error = ($signedUp != 0) ? "Competidor Inscrito" : null;
+        $error = ($competitor->getActive()) ? $error : "Competidor inactivo";
+        $error = ($error) ? $error : 0;
+        if ($error) {
+            return $this->redirectToRoute('inscription_show', array(
+                        'id' => $ins->getId(),
+                        'error' => $error
+            ));
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (is_null($competitorOld)) {
                 $em->persist($competitor);
             }
-            if ($signedUp != 0) {
-                $competitor->addTeam($ins->getTeam());
-                $em->flush();
-            }
-            return $this->redirectToRoute('inscription_show', array('id' => $ins->getId()));
+            $competitor->addTeam($ins->getTeam());
+            $em->flush();
+            return $this->redirectToRoute('inscription_show', array(
+                        'id' => $ins->getId(),
+                        'error' => $error
+            ));
         }
 
         return $this->render('IcoderBundle:competitor:new.html.twig', array(

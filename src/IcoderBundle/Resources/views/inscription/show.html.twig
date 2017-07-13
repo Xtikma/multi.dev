@@ -18,6 +18,11 @@
 {% endblock %}
 
 {% block panelBody %}
+    {% if error %}
+        <div class="panel">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
     <table class="table table-striped">
         <thead>
             <tr>
